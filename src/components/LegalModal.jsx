@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
-import { X, ShieldAlert, FileText, CheckCircle2, RotateCcw, Printer, Edit3 } from 'lucide-react';
-import { useStore } from '../context/StoreContext';
-import { useAdmin } from '../context/AdminContext';
+import React from 'react';
+import { X, ShieldCheck, Printer } from 'lucide-react';
+import { defaultLegalContent } from '../data/legalContent';
 
 export function LegalModal({ activeDocId, onClose, onSelectDoc }) {
-  const { legalContent } = useStore();
-  const { isAuthenticated, setIsAdminModalOpen } = useAdmin();
-
   if (!activeDocId) return null;
 
-  const currentDoc = legalContent[activeDocId] || legalContent.terms;
+  const currentDoc = defaultLegalContent[activeDocId] || defaultLegalContent.terms;
 
   const docTabs = [
     { id: 'terms', label: 'תקנון האתר' },
-    { id: 'cancellation', label: 'ביטול עסקה והחזרות' },
-    { id: 'warranty', label: 'תעודת אחריות' },
-    { id: 'privacy', label: 'מדיניות פרטיות' },
-    { id: 'accessibility', label: 'הצהרת נגישות' }
+    { id: 'cancellation', label: 'ביטול עסקה (חוק הגנת הצרכן)' },
+    { id: 'warranty', label: 'תעודת אחריות על תכשיטים' },
+    { id: 'privacy', label: 'מדיניות פרטיות (תיקון 13)' },
+    { id: 'accessibility', label: 'הצהרת נגישות (ת"י 5568)' }
   ];
 
   const handlePrint = () => {
@@ -24,7 +20,12 @@ export function LegalModal({ activeDocId, onClose, onSelectDoc }) {
   };
 
   return (
-    <div className="modal-overlay" role="dialog" aria-modal="true" aria-label={currentDoc.title}>
+    <div
+      className="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label={currentDoc.title}
+    >
       <div className="modal-backdrop" onClick={onClose} />
 
       <div className="modal-card legal-modal-card">
@@ -37,21 +38,6 @@ export function LegalModal({ activeDocId, onClose, onSelectDoc }) {
           </div>
 
           <div className="legal-header-actions">
-            {isAuthenticated && (
-              <button
-                type="button"
-                className="btn-edit-legal"
-                onClick={() => {
-                  onClose();
-                  setIsAdminModalOpen(true);
-                }}
-                title="ערוך מסמך זה בפאנל ניהול"
-              >
-                <Edit3 size={16} />
-                <span>עריכה בפאנל</span>
-              </button>
-            )}
-
             <button
               type="button"
               className="btn-icon-print"
@@ -93,8 +79,7 @@ export function LegalModal({ activeDocId, onClose, onSelectDoc }) {
         <div className="modal-body legal-modal-body">
           <div className="legal-meta-bar">
             <span>עודכן לאחרונה: {currentDoc.lastUpdated || 'נובמבר 2026'}</span>
-            <span>גרסה: {currentDoc.version || '1.0.0'}</span>
-            <span>תאימות: חוקי מדינת ישראל</span>
+            <span>תאימות מלאה: חוק הגנת הצרכן (מכר מרחוק) ותקן נגישות ת"י 5568 AA</span>
           </div>
 
           <div className="legal-sections-container">
@@ -114,8 +99,8 @@ export function LegalModal({ activeDocId, onClose, onSelectDoc }) {
         {/* Footer */}
         <div className="modal-footer legal-modal-footer">
           <div className="legal-footer-note">
-            <ShieldAlert size={16} />
-            <span>מסמך זה מעודכן על פי הדין הישראלי, חוק הגנת הצרכן ותקנות שוויון זכויות.</span>
+            <ShieldCheck size={16} />
+            <span>הגנה צרכנית מלאה • 14 ימי ביטול עסקה כחוק • אפס כרטיסי אשראי שמורים באתר</span>
           </div>
           <button type="button" className="btn-secondary" onClick={onClose}>
             סגור

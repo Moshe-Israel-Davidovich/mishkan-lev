@@ -1,21 +1,20 @@
 import React from 'react';
-import { ShoppingBag, Lock, Sliders, Sparkles, Heart } from 'lucide-react';
-import { useStore } from '../context/StoreContext';
-import { useCart } from '../context/CartContext';
-import { useAdmin } from '../context/AdminContext';
+import { siteConfig } from '../config';
+import { BrandEmblem, AccessibilityIcon, WhatsAppIcon } from './Icons';
 import { useAccessibility } from '../context/AccessibilityContext';
 
 export function Navbar() {
-  const { storeConfig } = useStore();
-  const { itemsCount, setIsDrawerOpen } = useCart();
-  const { setIsAdminModalOpen, isAuthenticated } = useAdmin();
   const { isMenuOpen, setIsMenuOpen } = useAccessibility();
+
+  const waGeneralLink = `https://wa.me/${siteConfig.contact.whatsappPhone}?text=${encodeURIComponent(
+    'שלום משכן לב, אשמח לפרטים נוספים על התכשיטים וההזמנות ✨'
+  )}`;
 
   return (
     <>
       {/* Top announcement bar */}
       <div className="announcement-bar">
-        <span>{storeConfig.announcement}</span>
+        <span>{siteConfig.brand.announcement}</span>
       </div>
 
       {/* Main navigation header */}
@@ -24,13 +23,12 @@ export function Navbar() {
           
           {/* Logo & Brand */}
           <a href="#" className="brand-logo" aria-label="משכן לב - דף הבית">
-            <div className="logo-symbol">
-              <span className="temple-arch">⛩️</span>
-              <Heart className="logo-heart-icon" size={14} />
+            <div className="logo-symbol-box">
+              <BrandEmblem size={28} />
             </div>
             <div className="brand-text">
-              <span className="brand-name">{storeConfig.storeName}</span>
-              <span className="brand-tagline">תכשיטי בית המקדש וירושלים</span>
+              <span className="brand-name">{siteConfig.brand.name}</span>
+              <span className="brand-tagline">{siteConfig.brand.tagline}</span>
             </div>
           </a>
 
@@ -50,10 +48,10 @@ export function Navbar() {
             </a>
           </nav>
 
-          {/* Action buttons */}
+          {/* Header Action Buttons */}
           <div className="header-actions">
             
-            {/* Accessibility toggle button */}
+            {/* Accessibility trigger */}
             <button
               type="button"
               className="action-icon-btn"
@@ -61,38 +59,23 @@ export function Navbar() {
               title="תפריט נגישות (תקן ת&quot;י 5568)"
               aria-label="פתח תפריט נגישות"
             >
-              <Sliders size={20} />
+              <AccessibilityIcon size={20} />
             </button>
 
-            {/* Admin login button */}
-            <button
-              type="button"
-              className={`action-icon-btn ${isAuthenticated ? 'admin-active' : ''}`}
-              onClick={() => setIsAdminModalOpen(true)}
-              title={isAuthenticated ? 'ניהול חנות (מחובר)' : 'כניסת מנהל'}
-              aria-label={isAuthenticated ? 'פתח לוח ניהול' : 'כניסת מנהל'}
+            {/* Direct WhatsApp Contact Button */}
+            <a
+              href={waGeneralLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-wa-btn"
+              title="פנייה מהירה בוואטסאפ"
             >
-              <Lock size={19} />
-              {isAuthenticated && <span className="admin-status-dot" />}
-            </button>
-
-            {/* Cart Button */}
-            <button
-              type="button"
-              className="cart-btn"
-              onClick={() => setIsDrawerOpen(true)}
-              aria-label={`עגלת קניות, ${itemsCount} פריטים`}
-            >
-              <ShoppingBag size={20} />
-              <span className="cart-btn-label">עגלה</span>
-              {itemsCount > 0 && (
-                <span className="cart-badge animate-scale" aria-live="polite">
-                  {itemsCount}
-                </span>
-              )}
-            </button>
+              <WhatsAppIcon size={18} />
+              <span className="nav-wa-text">שירות בוואטסאפ</span>
+            </a>
 
           </div>
+
         </div>
       </header>
     </>

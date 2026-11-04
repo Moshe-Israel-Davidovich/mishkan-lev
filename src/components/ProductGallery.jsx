@@ -1,12 +1,9 @@
 import React from 'react';
-import { CATEGORIES } from '../data/initialData';
-import { useStore } from '../context/StoreContext';
+import { siteConfig } from '../config';
 import { ProductCard } from './ProductCard';
-import { Sparkles, Filter } from 'lucide-react';
+import { GemIcon } from './Icons';
 
-export function ProductGallery() {
-  const { filteredProducts, activeCategory, setActiveCategory } = useStore();
-
+export function ProductGallery({ onSelectForOrder }) {
   return (
     <section id="products-section" className="products-section" aria-labelledby="products-title">
       <div className="section-container">
@@ -14,57 +11,27 @@ export function ProductGallery() {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-badge">
-            <Sparkles size={15} />
-            <span>הקולקציה הבלעדית</span>
+            <GemIcon size={16} />
+            <span>קולקציית תכשיטי בית המקדש</span>
           </div>
           <h2 id="products-title" className="section-title">
-            שרשראות בית המקדש וירושלים
+            שרשראות ותליוני בית המקדש וירושלים
           </h2>
           <p className="section-subtitle">
-            עבודת צורפות עדינה מלווה בדיוק מירבי, סמליות עמוקה וחומרים מובחרים
+            עבודת צורפות עדינה בדיוק מירבי, חומרים מובחרים ועמידים ליופי מלא משמעות
           </p>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="categories-filter-bar" role="toolbar" aria-label="סינון לפי קטגוריה">
-          <div className="filter-label">
-            <Filter size={16} />
-            <span>סינון לפי סוג:</span>
-          </div>
-          <div className="filter-pills-list">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                className={`filter-pill ${activeCategory === cat.id ? 'active' : ''}`}
-                onClick={() => setActiveCategory(cat.id)}
-                aria-pressed={activeCategory === cat.id}
-              >
-                {cat.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Products Grid */}
+        {/* 4 Products Grid */}
         <div className="products-grid">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {siteConfig.products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onSelectForOrder={onSelectForOrder}
+            />
           ))}
         </div>
-
-        {filteredProducts.length === 0 && (
-          <div className="empty-category-notice">
-            <p>לא נמצאו פריטים בקטגוריה שנבחרה.</p>
-            <button
-              type="button"
-              className="btn-secondary"
-              onClick={() => setActiveCategory('all')}
-            >
-              הצג את כל התכשיטים
-            </button>
-          </div>
-        )}
 
       </div>
     </section>

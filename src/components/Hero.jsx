@@ -1,19 +1,19 @@
 import React from 'react';
-import { Sparkles, ShieldCheck, HeartHandshake, Truck, ArrowLeft } from 'lucide-react';
-import { useStore } from '../context/StoreContext';
+import { ArrowLeft } from 'lucide-react';
+import { siteConfig } from '../config';
+import { GemIcon, ShieldIcon, BitIcon, TruckIcon } from './Icons';
 
 export function Hero() {
-  const { storeConfig } = useStore();
-
   return (
     <section className="hero-section" aria-label="פתיח חנות משכן לב">
       <div className="hero-container">
         
-        {/* Main hero content */}
+        {/* Hero text */}
         <div className="hero-content">
+          
           <div className="hero-badge">
-            <Sparkles size={16} className="badge-icon" />
-            <span>סדרת תכשיטי מקדש וירושלים — מהדורה בלעדית</span>
+            <GemIcon size={15} />
+            <span>{siteConfig.brand.badge}</span>
           </div>
 
           <h1 className="hero-title">
@@ -22,7 +22,7 @@ export function Hero() {
           </h1>
 
           <p className="hero-description">
-            בוטיק תכשיטים ישראלי ייחודי המביא את יופיו של בית המקדש, חומות ירושלים ופסוקי הנצח לתכשיטי כסף סטרלינג 925 וציפוי זהב 18K עמידים ומאירים.
+            בוטיק תכשיטים ישראלי המביא את יופיו של בית המקדש, חומות ירושלים ופסוקי הנצח לשרשראות כסף סטרלינג 925 וציפוי זהב 18K מובחרים, עמידים ומאירים.
           </p>
 
           <div className="hero-cta-group">
@@ -35,47 +35,48 @@ export function Hero() {
             </a>
           </div>
 
-          {/* Trust badges */}
+          {/* Trust ribbon */}
           <div className="trust-ribbon">
             <div className="trust-item">
-              <ShieldCheck size={20} className="trust-icon" />
+              <ShieldIcon size={20} className="trust-icon" />
               <div>
                 <strong>אחריות מלאה</strong>
-                <span>על איכות החומרים והציפוי</span>
+                <span>על איכות החומרים והסוגרים</span>
               </div>
             </div>
 
             <div className="trust-item">
-              <HeartHandshake size={20} className="trust-icon" />
+              <BitIcon size={20} className="trust-icon" />
               <div>
                 <strong>תשלום קל ב-Bit</strong>
-                <span>הזמנה ישירה ללא כרטיסי אשראי</span>
+                <span>העברה ישירה ללא כרטיסי אשראי</span>
               </div>
             </div>
 
             <div className="trust-item">
-              <Truck size={20} className="trust-icon" />
+              <TruckIcon size={20} className="trust-icon" />
               <div>
                 <strong>משלוחים לכל הארץ</strong>
-                <span>חינם בהזמנה מעל ₪{storeConfig.shipping?.freeShippingThreshold || 150}</span>
+                <span>חינם בהזמנה מעל ₪{siteConfig.shipping.freeThreshold}</span>
               </div>
             </div>
           </div>
+
         </div>
 
-        {/* Featured visual montage */}
+        {/* Hero visual — 100% Modest Object Photography */}
         <div className="hero-visual">
           <div className="hero-image-frame">
             <img
-              src="/images/products/item3_macro.jpg"
-              alt="תליון לב אם אשכחך ירושלים ובית המקדש"
+              src="/images/products/item3_box.jpg"
+              alt="תליון לב אם אשכחך ירושלים ובית המקדש בתיבת עץ זית מהודרת"
               className="hero-main-img"
               loading="eager"
             />
             <div className="hero-floating-card">
-              <span className="floating-card-tag">פריט הדגל</span>
+              <span className="floating-card-tag">מהדורה מיוחדת</span>
               <span className="floating-card-title">תליון לב "אם אשכחך"</span>
-              <span className="floating-card-price">רק ₪50</span>
+              <span className="floating-card-price">₪50 בלבד</span>
             </div>
           </div>
         </div>

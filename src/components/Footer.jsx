@@ -1,15 +1,15 @@
 import React from 'react';
-import { Heart, Phone, Mail, MapPin, MessageCircle, ShieldCheck, Lock, Sliders } from 'lucide-react';
-import { useStore } from '../context/StoreContext';
-import { useAdmin } from '../context/AdminContext';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import { siteConfig } from '../config';
+import { BrandEmblem, ShieldIcon, WhatsAppIcon, AccessibilityIcon } from './Icons';
 import { useAccessibility } from '../context/AccessibilityContext';
 
 export function Footer({ onOpenLegalDoc }) {
-  const { storeConfig } = useStore();
-  const { setIsAdminModalOpen, isAuthenticated } = useAdmin();
   const { setIsMenuOpen } = useAccessibility();
 
-  const contact = storeConfig.contact || {};
+  const waLink = `https://wa.me/${siteConfig.contact.whatsappPhone}?text=${encodeURIComponent(
+    'שלום משכן לב ✨'
+  )}`;
 
   return (
     <footer id="contact-section" className="site-footer" role="contentinfo">
@@ -18,15 +18,15 @@ export function Footer({ onOpenLegalDoc }) {
         {/* Brand column */}
         <div className="footer-col brand-col">
           <div className="footer-logo">
-            <span className="logo-symbol">⛩️</span>
-            <span className="footer-brand-name">{storeConfig.storeName}</span>
+            <BrandEmblem size={28} />
+            <span className="footer-brand-name">{siteConfig.brand.name}</span>
           </div>
           <p className="footer-brand-desc">
-            בוטיק תכשיטים ייחודי המביא את קדושת בית המקדש, יפי ירושלים ופסוקי הנצח לשרשראות כסף וזהב בעיצוב ישראלי מוקפד.
+            בוטיק תכשיטים ישראלי המביא את קדושת בית המקדש, יפי ירושלים ופסוקי הנצח לשרשראות כסף וזהב מובחרות בעיצוב ישראלי מוקפד.
           </p>
           <div className="footer-security-seal">
-            <ShieldCheck size={18} className="seal-icon" />
-            <span>אתר מאובטח | ציות לדין הישראלי | תשלום ב-Bit</span>
+            <ShieldIcon size={16} />
+            <span>אתר מאובטח • ציות לחוק הגנת הצרכן • תשלום ישיר ב-Bit</span>
           </div>
         </div>
 
@@ -43,16 +43,8 @@ export function Footer({ onOpenLegalDoc }) {
                 className="footer-link-btn"
                 onClick={() => setIsMenuOpen(true)}
               >
-                סרגל נגישות (ת"י 5568)
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="footer-link-btn"
-                onClick={() => setIsAdminModalOpen(true)}
-              >
-                {isAuthenticated ? 'לוח ניהול חנות (מחובר)' : 'כניסת מנהל האתר'}
+                <AccessibilityIcon size={14} style={{ display: 'inline', marginLeft: '5px' }} />
+                <span>סרגל נגישות (ת"י 5568)</span>
               </button>
             </li>
           </ul>
@@ -77,7 +69,7 @@ export function Footer({ onOpenLegalDoc }) {
                 className="footer-link-btn"
                 onClick={() => onOpenLegalDoc('cancellation')}
               >
-                מדיניות ביטול עסקה והחזרות
+                מדיניות ביטול עסקה והחזרות (חוק הגנת הצרכן)
               </button>
             </li>
             <li>
@@ -95,7 +87,7 @@ export function Footer({ onOpenLegalDoc }) {
                 className="footer-link-btn"
                 onClick={() => onOpenLegalDoc('privacy')}
               >
-                מדיניות פרטיות ומאגרי מידע (תיקון 13)
+                מדיניות פרטיות (תיקון 13)
               </button>
             </li>
             <li>
@@ -112,48 +104,48 @@ export function Footer({ onOpenLegalDoc }) {
 
         {/* Contact column */}
         <div className="footer-col contact-col">
-          <h4 className="footer-col-title">שירות לקוחות ויצירת קשר</h4>
+          <h4 className="footer-col-title">יצירת קשר ושירות לקוחות</h4>
           <div className="contact-details-list">
             <div className="contact-item">
-              <Phone size={17} className="contact-icon" />
-              <span>{contact.phone || '050-1234567'}</span>
+              <Phone size={16} className="contact-icon" />
+              <span>{siteConfig.contact.displayPhone}</span>
             </div>
 
             <div className="contact-item">
-              <MessageCircle size={17} className="contact-icon" />
+              <WhatsAppIcon size={16} className="contact-icon" />
               <a
-                href={`https://wa.me/${contact.whatsapp || '972501234567'}`}
+                href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="wa-link"
               >
-                מענה מהיר ב-WhatsApp
+                מענה ישיר ב-WhatsApp
               </a>
             </div>
 
             <div className="contact-item">
-              <Mail size={17} className="contact-icon" />
-              <span>{contact.email || 'mishkan.lev.store@gmail.com'}</span>
+              <Mail size={16} className="contact-icon" />
+              <span>{siteConfig.contact.email}</span>
             </div>
 
             <div className="contact-item">
-              <MapPin size={17} className="contact-icon" />
-              <span>{contact.address || 'ירושלים, ישראל'}</span>
+              <MapPin size={16} className="contact-icon" />
+              <span>{siteConfig.contact.address}</span>
             </div>
           </div>
         </div>
 
       </div>
 
-      {/* Bottom copyright line */}
+      {/* Bottom bar */}
       <div className="footer-bottom-bar">
         <div className="footer-bottom-container">
           <p className="copyright-text">
-            כל הזכויות שמורות © {new Date().getFullYear()} משכן לב — תכשיטי בית המקדש וירושלים בע"מ.
+            כל הזכויות שמורות © {new Date().getFullYear()} {siteConfig.brand.name} — תכשיטי בית המקדש וירושלים.
           </p>
           <div className="footer-meta-tags">
-            <span>נבנה באהבה בירושלים 🤍</span>
-            <span>100% תאימות לדין הישראלי</span>
+            <span>יצירה ישראלית מקורית</span>
+            <span>ציות מלא לדין הישראלי</span>
           </div>
         </div>
       </div>

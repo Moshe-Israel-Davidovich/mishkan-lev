@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Sparkles, Droplets, ShieldCheck, Heart } from 'lucide-react';
+import { GemIcon, ShieldIcon, TruckIcon } from './Icons';
 
 export function CraftSection() {
   return (
@@ -8,7 +8,7 @@ export function CraftSection() {
         
         <div className="section-header">
           <div className="section-badge">
-            <Award size={15} />
+            <GemIcon size={16} />
             <span>איכות צורפות ומסורת</span>
           </div>
           <h2 id="craft-title" className="section-title">
@@ -23,22 +23,22 @@ export function CraftSection() {
           
           <div className="craft-card">
             <div className="craft-icon-wrap">
-              <Sparkles size={24} />
+              <GemIcon size={24} />
             </div>
             <h3>כסף סטרלינג 925</h3>
             <p>
               מתכת אצילה ויוקרתית הנושאת חותמת תקן 925. עמידה, זוהרת ומתאימה לענידה יומיומית נוחה.
             </p>
             <ul className="craft-features-list">
-              <li>אינו גורם לאלרגיות (Nickel-Free)</li>
-              <li>ליטוש עדין בסטנדרט תכשיטנות גבוה</li>
+              <li>היפואלרגני וללא ניקל (Nickel-Free)</li>
+              <li>ליטוש עדין בסטנדרט צורפות גבוה</li>
               <li>קל לחידוש והברקה במטלית כסף</li>
             </ul>
           </div>
 
           <div className="craft-card">
             <div className="craft-icon-wrap">
-              <Award size={24} />
+              <GemIcon size={24} />
             </div>
             <h3>ציפוי זהב 18K עבה</h3>
             <p>
@@ -47,13 +47,13 @@ export function CraftSection() {
             <ul className="craft-features-list">
               <li>גוון זהב חם ואצילי בהשראת ירושלים</li>
               <li>שכבת הגנה נגד שריטות קלות</li>
-              <li>עמידות מוגברת לשימוש ממושך</li>
+              <li>עמידות מוגברת לענידה ממושכת</li>
             </ul>
           </div>
 
           <div className="craft-card">
             <div className="craft-icon-wrap">
-              <ShieldCheck size={24} />
+              <ShieldIcon size={24} />
             </div>
             <h3>תעודת אחריות וביטחון</h3>
             <p>
@@ -62,7 +62,7 @@ export function CraftSection() {
             <ul className="craft-features-list">
               <li>אחריות על פגמי ייצור וסוגרי שרשרת</li>
               <li>שירות לקוחות אישי ואכפתי ב-WhatsApp</li>
-              <li>החלפה או החזר כספי בהתאם לחוק הגנת הצרכן</li>
+              <li>החלפה או החזר כספי מלא לפי חוק הגנת הצרכן</li>
             </ul>
           </div>
 

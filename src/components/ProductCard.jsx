@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, ShoppingBag, Check, Sparkles, MessageCircle, Info } from 'lucide-react';
-import { useCart } from '../context/CartContext';
-import { useStore } from '../context/StoreContext';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { BitIcon, WhatsAppIcon } from './Icons';
 
-export function ProductCard({ product }) {
-  const { addToCart, setIsDrawerOpen } = useCart();
-  const { storeConfig } = useStore();
+export function ProductCard({ product, onSelectForOrder }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAdded, setIsAdded] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
 
   const images = product.images && product.images.length > 0
     ? product.images
@@ -24,18 +19,6 @@ export function ProductCard({ product }) {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const handleAddToCart = () => {
-    addToCart(product, 1);
-    setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 1800);
-  };
-
-  const handleDirectWhatsApp = () => {
-    const text = `שלום "משכן לב" ✨\nאני מעוניין/ת להזמין את התכשיט: *${product.name}* (מחיר: ₪${product.price}).\nאשמח לפרטים על תשלום ב-Bit ומשלוח. תודה!`;
-    const phone = storeConfig.contact?.whatsapp || '972501234567';
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
-  };
-
   return (
     <article className="product-card" aria-label={product.name}>
       
@@ -49,16 +32,16 @@ export function ProductCard({ product }) {
           </span>
         )}
 
-        {/* Current Image */}
+        {/* Carousel image */}
         <div className="carousel-view">
           <img
             src={images[currentImageIndex]}
-            alt={`${product.name} - תמונה ${currentImageIndex + 1} מתוך ${images.length}`}
+            alt={`${product.name} - תצוגה ${currentImageIndex + 1}`}
             className="product-image"
             loading="lazy"
           />
 
-          {/* Navigation arrows (if more than 1 image) */}
+          {/* Navigation arrows (if > 1 image) */}
           {images.length > 1 && (
             <>
               <button
@@ -67,7 +50,7 @@ export function ProductCard({ product }) {
                 onClick={nextImage}
                 aria-label="תמונה הבאה"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={18} />
               </button>
 
               <button
@@ -76,14 +59,14 @@ export function ProductCard({ product }) {
                 onClick={prevImage}
                 aria-label="תמונה קודמת"
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={18} />
               </button>
             </>
           )}
 
-          {/* Image index dots */}
+          {/* Dots */}
           {images.length > 1 && (
-            <div className="carousel-dots" role="tablist" aria-label="בחירת תמונת מוצר">
+            <div className="carousel-dots" role="tablist" aria-label="בחירת תמונה">
               {images.map((_, idx) => (
                 <button
                   key={idx}
@@ -95,7 +78,7 @@ export function ProductCard({ product }) {
                     e.stopPropagation();
                     setCurrentImageIndex(idx);
                   }}
-                  aria-label={`עבור לתמונה ${idx + 1}`}
+                  aria-label={`מעבר לתמונה ${idx + 1}`}
                 />
               ))}
             </div>
@@ -121,7 +104,7 @@ export function ProductCard({ product }) {
 
       </div>
 
-      {/* Product Information */}
+      {/* Product Details */}
       <div className="product-info">
         
         <div className="product-header">
@@ -137,12 +120,11 @@ export function ProductCard({ product }) {
         <h3 className="product-title">{product.name}</h3>
         <p className="product-subtitle">{product.subtitle}</p>
 
-        {/* Short description */}
         <p className="product-desc-text">
           {product.description}
         </p>
 
-        {/* Specifications toggle / collapsible */}
+        {/* Specifications */}
         <div className="product-specs-box">
           <div className="spec-row">
             <span className="spec-label">חומר:</span>
@@ -154,38 +136,18 @@ export function ProductCard({ product }) {
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="product-actions">
-          <button
-            type="button"
-            className={`btn-add-cart ${isAdded ? 'added' : ''}`}
-            onClick={handleAddToCart}
-            aria-live="polite"
-          >
-            {isAdded ? (
-              <>
-                <Check size={18} />
-                <span>נוסף לעגלה!</span>
-              </>
-            ) : (
-              <>
-                <ShoppingBag size={18} />
-                <span>הוספה לעגלה</span>
-              </>
-            )}
-          </button>
-
-          <button
-            type="button"
-            className="btn-quick-wa"
-            onClick={handleDirectWhatsApp}
-            title="רכישה ישירה בוואטסאפ"
-            aria-label={`רכישת ${product.name} בוואטסאפ`}
-          >
-            <MessageCircle size={18} />
-            <span>הזמן ב-WhatsApp</span>
-          </button>
-        </div>
+        {/* Direct Order Button */}
+        <button
+          type="button"
+          className="btn-direct-order"
+          onClick={() => onSelectForOrder(product)}
+        >
+          <div className="direct-order-icons">
+            <BitIcon size={18} />
+            <WhatsAppIcon size={18} />
+          </div>
+          <span>להזמנה מהירה ב-Bit / WhatsApp</span>
+        </button>
 
       </div>
 

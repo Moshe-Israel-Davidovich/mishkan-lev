@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { StoreProvider } from './context/StoreContext';
-import { AdminProvider } from './context/AdminContext';
-import { CartProvider } from './context/CartContext';
 import { AccessibilityProvider } from './context/AccessibilityContext';
 
 import { Navbar } from './components/Navbar';
@@ -11,48 +8,52 @@ import { VisionSection } from './components/VisionSection';
 import { CraftSection } from './components/CraftSection';
 import { Footer } from './components/Footer';
 
-import { CartDrawer } from './components/CartDrawer';
-import { CheckoutModal } from './components/CheckoutModal';
-import { AdminDashboardModal } from './components/AdminDashboardModal';
+import { QuickOrderModal } from './components/QuickOrderModal';
 import { LegalModal } from './components/LegalModal';
 import { AccessibilityToolbar } from './components/AccessibilityToolbar';
 
 import './styles/theme.css';
 
-function MainApp() {
+function MainLandingPage() {
+  const [selectedProductForOrder, setSelectedProductForOrder] = useState(null);
   const [activeLegalDoc, setActiveLegalDoc] = useState(null);
 
   return (
     <div className="site-root" dir="rtl">
       
-      {/* WCAG 2.1 AA: Skip to main content */}
+      {/* ת"י 5568 / WCAG 2.1 AA: קישור דילוג לתוכן המרכזי */}
       <a href="#main-content" className="skip-to-content">
         דלג לתוכן מרכזי
       </a>
 
-      {/* Main Header & Navbar */}
+      {/* סרגל עליון וניווט */}
       <Navbar />
 
-      {/* Main Page Content */}
+      {/* גוף דף הנחיתה */}
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <ProductGallery />
+        <ProductGallery onSelectForOrder={(product) => setSelectedProductForOrder(product)} />
         <VisionSection />
         <CraftSection />
       </main>
 
-      {/* Footer with legal navigation */}
+      {/* פוטר ומידע משפטי */}
       <Footer onOpenLegalDoc={(docId) => setActiveLegalDoc(docId)} />
 
-      {/* Overlays and Modals */}
-      <CartDrawer />
-      <CheckoutModal />
-      <AdminDashboardModal />
+      {/* מודאל הזמנה מהירה ב-Bit / WhatsApp */}
+      <QuickOrderModal
+        product={selectedProductForOrder}
+        onClose={() => setSelectedProductForOrder(null)}
+      />
+
+      {/* מודאל מסמכים משפטיים ונהלים (חוק הגנת הצרכן, אחריות ונגישות) */}
       <LegalModal
         activeDocId={activeLegalDoc}
         onClose={() => setActiveLegalDoc(null)}
         onSelectDoc={(docId) => setActiveLegalDoc(docId)}
       />
+
+      {/* סרגל נגישות צף תקני */}
       <AccessibilityToolbar
         onOpenLegalDoc={(docId) => setActiveLegalDoc(docId)}
       />
@@ -63,14 +64,8 @@ function MainApp() {
 
 export default function App() {
   return (
-    <StoreProvider>
-      <AdminProvider>
-        <CartProvider>
-          <AccessibilityProvider>
-            <MainApp />
-          </AccessibilityProvider>
-        </CartProvider>
-      </AdminProvider>
-    </StoreProvider>
+    <AccessibilityProvider>
+      <MainLandingPage />
+    </AccessibilityProvider>
   );
 }

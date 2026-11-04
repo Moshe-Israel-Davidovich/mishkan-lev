@@ -1,12 +1,9 @@
 import React from 'react';
-import { Heart, Landmark, Flame, Edit3 } from 'lucide-react';
-import { useStore } from '../context/StoreContext';
-import { useAdmin } from '../context/AdminContext';
+import { siteConfig } from '../config';
+import { BrandEmblem, GemIcon, ShieldIcon } from './Icons';
 
 export function VisionSection() {
-  const { storeConfig } = useStore();
-  const { isAuthenticated, setIsAdminModalOpen } = useAdmin();
-  const vision = storeConfig.vision || {};
+  const { vision } = siteConfig;
 
   return (
     <section id="vision-section" className="vision-section" aria-labelledby="vision-title">
@@ -14,79 +11,62 @@ export function VisionSection() {
         
         <div className="vision-grid">
           
-          {/* Text and story */}
+          {/* Main story */}
           <div className="vision-main-content">
-            <div className="section-badge gold-badge">
-              <Heart size={15} />
-              <span>{vision.badge || "החזון והשליחות שלנו"}</span>
+            <div className="section-badge">
+              <BrandEmblem size={16} />
+              <span>החזון והשליחות שלנו</span>
             </div>
 
-            <div className="title-with-admin">
-              <h2 id="vision-title" className="vision-title">
-                {vision.title || "לחבר את הלב לקדושת ירושלים ולבית המקדש"}
-              </h2>
-              {isAuthenticated && (
-                <button
-                  type="button"
-                  className="admin-edit-pill"
-                  onClick={() => setIsAdminModalOpen(true)}
-                  title="ערוך טקסט חזון בפאנל ניהול"
-                >
-                  <Edit3 size={14} />
-                  <span>ערוך חזון</span>
-                </button>
-              )}
-            </div>
+            <h2 id="vision-title" className="vision-title">
+              {vision.title}
+            </h2>
 
             <p className="vision-lead">
               {vision.subtitle}
             </p>
 
-            <div className="vision-paragraphs">
-              {(vision.paragraphs || []).map((p, idx) => (
-                <p key={idx} className="vision-text-block">
-                  {p}
-                </p>
-              ))}
-            </div>
+            <p className="vision-text-block">
+              {vision.lead}
+            </p>
 
-            {/* Quote block */}
+            {/* Psalms quote */}
             <blockquote className="vision-quote">
               <span className="quote-mark">“</span>
-              <p>אם אשכחך ירושלים תשכח ימיני, תדבק לשוני לחכי אם לא אזכרכי...</p>
-              <cite>— תהילים קל"ז</cite>
+              <p>{vision.quote}</p>
+              <cite>— {vision.quoteSource}</cite>
             </blockquote>
           </div>
 
-          {/* Pillars Cards */}
+          {/* Pillars */}
           <div className="vision-pillars">
             <div className="pillar-card">
               <div className="pillar-icon-box">
-                <Landmark size={26} className="pillar-icon" />
+                <BrandEmblem size={24} />
               </div>
               <h3 className="pillar-title">זיכרון חי של המקדש</h3>
               <p className="pillar-text">
-                השרשראות נושאות מוטיבים היסטוריים ורוחניים מדויקים מבית המקדש השני, שער ניקנור וחומות ירושלים הקדומה.
+                השרשראות נושאות מוטיבים היסטוריים ורוחניים מדויקים מבית המקדש, שער ניקנור וחומות ירושלים העתיקה.
               </p>
             </div>
 
             <div className="pillar-card">
               <div className="pillar-icon-box">
-                <Flame size={26} className="pillar-icon" />
+                <GemIcon size={24} />
               </div>
               <h3 className="pillar-title">איכות צורפות ללא פשרות</h3>
               <p className="pillar-text">
-                עמידות מוגברת בציפוי זהב וכסף סטרלינג 925, ליטוש ידני עדין וחיתוכי לייזר קליגרפיים מהמעלה הראשונה.
+                כסף סטרלינג 925 וציפויי זהב עבים ועמידים למים, ליטוש ידני עדין וחיתוכי לייזר קליגרפיים מהמעלה הראשונה.
               </p>
             </div>
 
             <div className="pillar-card">
               <div className="pillar-icon-box">
-                <Heart size={26} className="pillar-icon" />
+                <ShieldIcon size={24} />
               </div>
-              <h3 className="pillar-title">מתנה מרגשת מכל הלב</h3>
+              <h3 className="pillar-title">שירות אישי ואחריות</h3>
               <p className="pillar-text">
-                תכשיט בעל ערך פנימי עמוק לכל מי שאוהב את ירושלים — מושלם לבת/בר מצווה, ימי הולדת, שמחות ומתנת אהבה.
+                קשר ישיר ואנושי בוואטסאפ, אריזת מתנה מהודרת עם כל פריט, ואחריות מלאה לשקט הנפשי שלך.
               </p>
             </div>
           </div>

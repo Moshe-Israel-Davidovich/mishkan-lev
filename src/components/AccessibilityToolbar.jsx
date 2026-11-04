@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sliders, Type, Sun, Moon, Eye, ZapOff, RotateCcw, FileText, X } from 'lucide-react';
+import { Type, Sun, Moon, Eye, ZapOff, RotateCcw, FileText, X } from 'lucide-react';
+import { AccessibilityIcon } from './Icons';
 import { useAccessibility } from '../context/AccessibilityContext';
 
 export function AccessibilityToolbar({ onOpenLegalDoc }) {
@@ -31,7 +32,7 @@ export function AccessibilityToolbar({ onOpenLegalDoc }) {
         aria-expanded={isMenuOpen}
         title="התאמות נגישות"
       >
-        <Sliders size={22} className="a11y-trigger-icon" />
+        <AccessibilityIcon size={22} className="a11y-trigger-icon" />
         <span className="a11y-trigger-text">נגישות</span>
       </button>
 
@@ -46,7 +47,7 @@ export function AccessibilityToolbar({ onOpenLegalDoc }) {
           {/* Header */}
           <div className="a11y-header">
             <div className="a11y-title-wrap">
-              <Sliders size={20} />
+              <AccessibilityIcon size={20} />
               <h3 className="a11y-title">סרגל נגישות (ת"י 5568 AA)</h3>
             </div>
             <button

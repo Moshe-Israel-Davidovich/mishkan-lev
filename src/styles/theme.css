@@ -3590,3 +3590,277 @@ a {
   display: flex;
   gap: 1.5rem;
 }
+
+
+/* ==========================================================================
+   16. Simple Landing Page Direct Commerce & Modest Visuals Styles
+   ========================================================================== */
+
+/* Logo Symbol Box */
+.logo-symbol-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #fdf9f0 0%, #f4ebd6 100%);
+  border: 1px solid var(--color-gold-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Nav WhatsApp Direct Button */
+.nav-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #e8f5e9;
+  color: #1e7e34;
+  border: 1px solid rgba(30, 190, 93, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.85rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.nav-wa-btn:hover {
+  background-color: #c8e6c9;
+  color: #155724;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .nav-wa-text {
+    display: none;
+  }
+}
+
+/* Direct Order Button on Product Cards */
+.btn-direct-order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  background: linear-gradient(135deg, #c5a059 0%, #a6833e 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.32);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.btn-direct-order:hover {
+  background: linear-gradient(135deg, #b38f46 0%, #8f6e2f 100%);
+  box-shadow: 0 6px 18px rgba(166, 131, 62, 0.42);
+  transform: translateY(-2px);
+}
+
+.direct-order-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Quick Order Modal */
+.quick-order-card {
+  max-width: 520px;
+}
+
+.quick-product-summary {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background-color: #faf8f5;
+  border-bottom: 1px solid var(--color-border-subtle);
+  align-items: center;
+}
+
+.quick-product-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+}
+
+.quick-product-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-product-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.25;
+  margin-bottom: 0.2rem;
+}
+
+.quick-product-mat {
+  font-size: 0.78rem;
+  color: var(--color-gold-deep);
+  margin-bottom: 0.35rem;
+}
+
+.quick-product-price {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.quick-product-price strong {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-right: 0.35rem;
+}
+
+.quick-original-price {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  text-decoration: line-through;
+  margin-right: 0.5rem;
+}
+
+.quick-actions-container {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-quick-primary-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: #1ebe5d;
+  color: #ffffff;
+  padding: 0.95rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(30, 190, 93, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.btn-quick-primary-wa:hover {
+  background-color: #169e4b;
+  box-shadow: 0 6px 18px rgba(30, 190, 93, 0.4);
+  transform: translateY(-2px);
+}
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  gap: 1rem;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* Bit Box Card inside Quick Order Modal */
+.bit-box-card {
+  background-color: #f7f3ec;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.bit-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bit-badge-box {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background-color: #009e9e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bit-title-text {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+.bit-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.bit-number-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-gold-soft);
+}
+
+.bit-phone-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #008282;
+  letter-spacing: 0.05em;
+  margin: 0 0.35rem;
+}
+
+.bit-name-val {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.bit-steps-simple ol {
+  padding-right: 1.25rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.quick-guarantee-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 0.25rem;
+}
