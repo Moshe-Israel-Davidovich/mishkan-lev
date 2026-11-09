@@ -4,8 +4,6 @@ import { AccessibilityProvider } from './context/AccessibilityContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProductGallery } from './components/ProductGallery';
-import { VisionSection } from './components/VisionSection';
-import { CraftSection } from './components/CraftSection';
 import { DirectContactSection } from './components/DirectContactSection';
 import { Footer } from './components/Footer';
 
@@ -33,8 +31,6 @@ function MainLandingPage() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <ProductGallery />
-        <VisionSection />
-        <CraftSection />
         <DirectContactSection />
       </main>
 

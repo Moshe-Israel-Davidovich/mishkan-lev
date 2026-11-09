@@ -22,7 +22,7 @@ export function Footer({ onOpenLegalDoc }) {
             <span className="footer-brand-name">{siteConfig.brand.name}</span>
           </div>
           <p className="footer-brand-desc">
-            בוטיק תכשיטים ישראלי המביא את קדושת בית המקדש, יפי ירושלים ופסוקי הנצח לשרשראות כסף וזהב מובחרות בעיצוב ישראלי מוקפד.
+            תכשיטי בית המקדש וירושלים מכסף סטרלינג 925 וציפוי זהב 18K.
           </p>
           <div className="footer-security-seal">
             <ShieldIcon size={16} />
@@ -35,8 +35,7 @@ export function Footer({ onOpenLegalDoc }) {
           <h4 className="footer-col-title">ניווט מהיר</h4>
           <ul className="footer-links-list">
             <li><a href="#products-section">קולקציית התכשיטים</a></li>
-            <li><a href="#vision-section">החזון שלנו</a></li>
-            <li><a href="#craft-section">איכות ואחריות</a></li>
+            <li><a href="#contact-section">הזמנות ויצירת קשר</a></li>
             <li>
               <button
                 type="button"

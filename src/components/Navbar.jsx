@@ -42,11 +42,8 @@ export function Navbar() {
             <a href="#products-section" className="nav-link">
               הקולקציה
             </a>
-            <a href="#vision-section" className="nav-link">
-              החזון שלנו
-            </a>
-            <a href="#craft-section" className="nav-link">
-              איכות ואחריות
+            <a href="#contact-section" className="nav-link">
+              הזמנה ומשלוחים
             </a>
             <a href="#contact-section" className="nav-link">
               יצירת קשר

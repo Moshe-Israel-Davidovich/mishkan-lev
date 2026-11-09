@@ -81,16 +81,16 @@ export function Hero() {
           
           <div className="hero-badge">
             <GemIcon size={15} />
-            <span>{siteConfig.brand.badge}</span>
+            <span>בוטיק משכן לב</span>
           </div>
 
           <h1 className="hero-title">
-            לענוד את הקדושה,
-            <span className="hero-title-highlight">לחבר את הלב לירושלים</span>
+            תכשיטי בית המקדש
+            <span className="hero-title-highlight">וירושלים</span>
           </h1>
 
           <p className="hero-description">
-            בוטיק תכשיטים ישראלי המביא את יופיו של בית המקדש, חומות ירושלים ופסוקי הנצח לשרשראות כסף סטרלינג 925 וציפוי זהב 18K מובחרים, עמידים ומאירים.
+            שרשראות כסף סטרלינג 925 וציפוי זהב 18K איכותיים. הזמנה ישירה ללא הרשמה, תשלום ב-Bit ומשלוח מהיר לכל הארץ.
           </p>
 
           {/* Direct Contact & Order CTA Group */}
@@ -102,7 +102,7 @@ export function Hero() {
               className="btn-hero-wa"
             >
               <WhatsAppIcon size={20} />
-              <span>הזמנה מהירה ב-WhatsApp</span>
+              <span>הזמנה ישירה ב-WhatsApp</span>
             </a>
 
             <a 
@@ -114,7 +114,7 @@ export function Hero() {
             </a>
 
             <a href="#products-section" className="btn-hero-secondary">
-              <span>לקולקציה המלאה</span>
+              <span>לצפייה בפריטים</span>
               <ArrowLeft size={16} />
             </a>
           </div>
@@ -164,11 +164,6 @@ export function Hero() {
               className="hero-main-img hero-moving-img"
               loading="eager"
             />
-            <div className="hero-floating-card">
-              <span className="floating-card-tag">{activeItem.tag}</span>
-              <span className="floating-card-title">{activeItem.title}</span>
-              <span className="floating-card-price">{activeItem.price}</span>
-            </div>
           </div>
 
           {/* Hero interactive switcher */}

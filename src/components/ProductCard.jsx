@@ -58,13 +58,6 @@ export function ProductCard({ product }) {
       {/* אזור תמונות נעות (Moving Images Slideshow) */}
       <div className="product-media-wrapper">
         
-        {/* תגית מוצר */}
-        {product.badge && (
-          <span className="product-badge">
-            {product.badge}
-          </span>
-        )}
-
         {/* תצוגת התמונה הנעה עם אנימציית מעבר חלקה */}
         <div className="carousel-view">
           <img
@@ -153,10 +146,6 @@ export function ProductCard({ product }) {
 
         <h3 className="product-title">{product.name}</h3>
         <p className="product-subtitle">{product.subtitle}</p>
-
-        <p className="product-desc-text">
-          {product.description}
-        </p>
 
         {/* מפרט חומרים */}
         <div className="product-specs-box">

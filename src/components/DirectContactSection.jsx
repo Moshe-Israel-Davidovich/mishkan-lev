@@ -23,13 +23,13 @@ export function DirectContactSection() {
         <div className="section-header">
           <div className="section-badge">
             <WhatsAppIcon size={16} />
-            <span>הזמנות ושירות אישי</span>
+            <span>הזמנה ישירה</span>
           </div>
           <h2 id="contact-heading" className="section-title">
-            יצירת קשר והזמנות ישירות
+            יצירת קשר ותשלום
           </h2>
           <p className="section-subtitle">
-            אנו זמינים לכל שאלה, תיאום משלוח ותשלום נוח וישיר
+            פנייה ישירה ב-WhatsApp, במייל או תשלום ב-Bit
           </p>
         </div>
 
@@ -40,9 +40,9 @@ export function DirectContactSection() {
             <div className="contact-card-icon wa-icon-bg">
               <WhatsAppIcon size={30} />
             </div>
-            <h3>מענה מהיר ב-WhatsApp</h3>
+            <h3>הזמנה ב-WhatsApp</h3>
             <p>
-              שליחת הודעה ישירה לנציג הבוטיק, קבלת ייעוץ אישי, תמונות נוספות ותיאום הזמנה מהיר.
+              שליחת הודעה ישירה עם הפריט המבוקש לתיאום משלוח מהיר.
             </p>
             <a
               href={waUrl}
@@ -50,10 +50,10 @@ export function DirectContactSection() {
               rel="noopener noreferrer"
               className="btn-card-wa"
             >
-              <span>פתיחת שיחה ב-WhatsApp</span>
+              <span>פתיחת הודעה ב-WhatsApp</span>
               <ArrowLeft size={16} />
             </a>
-            <span className="contact-card-note">זמינים עבורכם ברוב שעות היום</span>
+            <span className="contact-card-note">זמינים למענה מהיר</span>
           </div>
 
           {/* Email Direct Card */}
@@ -61,15 +61,15 @@ export function DirectContactSection() {
             <div className="contact-card-icon mail-icon-bg">
               <Mail size={28} />
             </div>
-            <h3>פנייה והזמנה בדוא"ל</h3>
+            <h3>הזמנה בדוא"ל</h3>
             <p>
-              מעדיפים במייל? שלחו לנו את פרטי התכשיט והמשלוח, ונחזור אליכם עם אישור הזמנה מסודר.
+              שליחת מייל עם פרטי התכשיט והכתובת לקבלת אישור הזמנה.
             </p>
             <a
               href={mailUrl}
               className="btn-card-mail"
             >
-              <span>שליחת מייל ישיר</span>
+              <span>שליחת מייל להזמנה</span>
               <ArrowLeft size={16} />
             </a>
             <span className="contact-card-note">{contact.email}</span>
@@ -80,9 +80,9 @@ export function DirectContactSection() {
             <div className="contact-card-icon bit-icon-bg">
               <BitIcon size={28} />
             </div>
-            <h3>תשלום נוח ב-Bit / שיחה</h3>
+            <h3>תשלום ב-Bit / טלפון</h3>
             <p>
-              העברה מהירה ומאובטחת באפליקציית Bit ללא כרטיסי אשראי, או שיחה ישירה למענה אנושי.
+              העברה מהירה באפליקציית Bit למספר הטלפון או שיחה ישירה.
             </p>
             <a
               href={`tel:${(contact.phone || contact.displayPhone || '').replace(/[^0-9]/g, '')}`}
