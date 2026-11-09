@@ -24,7 +24,7 @@ export function CraftSection() {
           <div className="craft-card">
             <div className="craft-card-thumb">
               <img
-                src="/images/products/silver_temple_slate.jpg"
+                src={`${import.meta.env.BASE_URL}images/products/silver_temple_slate.jpg`}
                 alt="כסף סטרלינג 925 איכותי בגימור מבריק"
                 loading="lazy"
               />
@@ -46,7 +46,7 @@ export function CraftSection() {
           <div className="craft-card">
             <div className="craft-card-thumb">
               <img
-                src="/images/products/gold_gates_macro.jpg"
+                src={`${import.meta.env.BASE_URL}images/products/gold_gates_macro.jpg`}
                 alt="ציפוי זהב 18K עבה ועמיד"
                 loading="lazy"
               />
@@ -68,7 +68,7 @@ export function CraftSection() {
           <div className="craft-card">
             <div className="craft-card-thumb">
               <img
-                src="/images/products/gold_heart_cushion.jpg"
+                src={`${import.meta.env.BASE_URL}images/products/gold_heart_cushion.jpg`}
                 alt="אריזת בוטיק מהודרת עם תעודת אחריות"
                 loading="lazy"
               />

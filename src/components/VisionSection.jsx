@@ -40,7 +40,7 @@ export function VisionSection() {
             {/* Vision authentic photography frame */}
             <div className="vision-image-card">
               <img
-                src="/images/products/gold_gates_wide.jpg"
+                src={`${import.meta.env.BASE_URL}images/products/gold_gates_wide.jpg`}
                 alt="שרשרת שערי ירושלים על רקע קשת אבן ירושלמית ועצי זית באור שקיעה טבעי"
                 className="vision-card-img"
                 loading="lazy"

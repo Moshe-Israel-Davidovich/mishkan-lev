@@ -3,6 +3,9 @@ import { ArrowLeft, Mail, Sparkles } from 'lucide-react';
 import { siteConfig } from '../config';
 import { GemIcon, ShieldIcon, BitIcon, TruckIcon, WhatsAppIcon } from './Icons';
 
+const BASE = import.meta.env?.BASE_URL || '/';
+const getImg = (name) => `${BASE}images/products/${name}`;
+
 const HERO_SHOWCASE_ITEMS = [
   {
     id: 'collection',
@@ -10,7 +13,7 @@ const HERO_SHOWCASE_ITEMS = [
     tag: 'קולקציית ירושלים והמקדש',
     title: 'סדרת תכשיטי משכן לב השלמה',
     price: 'החל מ-₪25 | משלוח חינם מעל ₪150',
-    img: '/images/products/collection_all_master.jpg',
+    img: getImg('collection_all_master.jpg'),
     alt: 'קולקציית תכשיטי בית המקדש וירושלים - כל הפריטים יחד על אבן ירושלמית ועץ זית'
   },
   {
@@ -19,7 +22,7 @@ const HERO_SHOWCASE_ITEMS = [
     tag: 'מהדורה מיוחדת ✨',
     title: 'תליון לב "אם אשכחך ירושלים"',
     price: '₪50 בלבד',
-    img: '/images/products/gold_heart_stone.jpg',
+    img: getImg('gold_heart_stone.jpg'),
     alt: 'תליון לב זהב אם אשכחך ירושלים על אבן ירושלמית מוארת'
   },
   {
@@ -28,7 +31,7 @@ const HERO_SHOWCASE_ITEMS = [
     tag: 'הנמכר ביותר 🔥',
     title: 'שרשרת "שערי ירושלים"',
     price: '₪45 בלבד',
-    img: '/images/products/gold_gates_arch.jpg',
+    img: getImg('gold_gates_arch.jpg'),
     alt: 'שרשרת שערי ירושלים תלויה על קשת אבן ירושלמית'
   },
   {
@@ -37,7 +40,7 @@ const HERO_SHOWCASE_ITEMS = [
     tag: 'כסף סטרלינג 925 🕊️',
     title: 'שרשרת כסף "עולים לירושלים"',
     price: '₪35 בלבד',
-    img: '/images/products/silver_temple_pomegranate.jpg',
+    img: getImg('silver_temple_pomegranate.jpg'),
     alt: 'שרשרת כסף עולים לירושלים על ענף עם פריחת רימונים'
   }
 ];

@@ -9,6 +9,9 @@
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
+const BASE = import.meta.env?.BASE_URL || '/';
+const getImg = (name) => `${BASE}images/products/${name}`;
+
 export const siteConfig = {
   // פרטי המותג הראשיים
   brand: {
@@ -64,10 +67,10 @@ export const siteConfig = {
       description: 'שרשרת כסף יפהפייה ועדינה, המשלבת את שער המקדש המפואר, צלליות עולי רגל בדרכם לעיר הקודש וסלסול גפן עשיר. יצירה המבטאת שמחה, כמיהה וחיבור שורשי.',
       badge: 'אהוב במיוחד',
       images: [
-        '/images/products/silver_temple_main.jpg',
-        '/images/products/silver_temple_pomegranate.jpg',
-        '/images/products/silver_temple_slate.jpg',
-        '/images/products/silver_temple_wide.jpg'
+        getImg('silver_temple_main.jpg'),
+        getImg('silver_temple_pomegranate.jpg'),
+        getImg('silver_temple_slate.jpg'),
+        getImg('silver_temple_wide.jpg')
       ]
     },
     {
@@ -82,10 +85,10 @@ export const siteConfig = {
       description: 'פנורמה מוזהבת של חומות ירושלים, מגדלי העיר ושער בית המקדש, שבמרכזו מעוצב לב פנימי עדין ומלא משמעות. שרשרת אלגנטית המפיצה אור.',
       badge: 'הנמכר ביותר',
       images: [
-        '/images/products/gold_gates_arch.jpg',
-        '/images/products/gold_gates_flatlay.jpg',
-        '/images/products/gold_gates_macro.jpg',
-        '/images/products/gold_gates_linen.jpg'
+        getImg('gold_gates_arch.jpg'),
+        getImg('gold_gates_flatlay.jpg'),
+        getImg('gold_gates_macro.jpg'),
+        getImg('gold_gates_linen.jpg')
       ]
     },
     {
@@ -100,10 +103,10 @@ export const siteConfig = {
       description: 'תליון לב עמוק ומרגש: צדו האחד כולל חיתוך אותיות קליגרפי מופתי של הפסוק המלא "אם אשכחך ירושלים תשכח ימיני", וצדו השני מציג תבליט מדויק של שער בית המקדש. המתנה המושלמת.',
       badge: 'מהדורה מיוחדת',
       images: [
-        '/images/products/gold_heart_stone.jpg',
-        '/images/products/gold_heart_cushion.jpg',
-        '/images/products/gold_heart_blossom.jpg',
-        '/images/products/gold_heart_wide.jpg'
+        getImg('gold_heart_stone.jpg'),
+        getImg('gold_heart_cushion.jpg'),
+        getImg('gold_heart_blossom.jpg'),
+        getImg('gold_heart_wide.jpg')
       ]
     },
     {
@@ -118,10 +121,10 @@ export const siteConfig = {
       description: 'תכשיט יומיומי אלגנטי, עדין ונוח לענידה, המציג את חזית בית המקדש המפואר עם עיטורי כתר וסלסולים בסגנון צורפות מסורתי.',
       badge: 'מחיר היכרות',
       images: [
-        '/images/products/gold_crown_wood.jpg',
-        '/images/products/gold_crown_linen.jpg',
-        '/images/products/gold_crown_sunlight.jpg',
-        '/images/products/gold_crown_wide.jpg'
+        getImg('gold_crown_wood.jpg'),
+        getImg('gold_crown_linen.jpg'),
+        getImg('gold_crown_sunlight.jpg'),
+        getImg('gold_crown_wide.jpg')
       ]
     }
   ]
