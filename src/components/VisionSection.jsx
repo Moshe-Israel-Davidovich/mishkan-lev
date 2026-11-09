@@ -36,6 +36,19 @@ export function VisionSection() {
               <p>{vision.quote}</p>
               <cite>— {vision.quoteSource}</cite>
             </blockquote>
+
+            {/* Vision authentic photography frame */}
+            <div className="vision-image-card">
+              <img
+                src="/images/products/gold_gates_wide.jpg"
+                alt="שרשרת שערי ירושלים על רקע קשת אבן ירושלמית ועצי זית באור שקיעה טבעי"
+                className="vision-card-img"
+                loading="lazy"
+              />
+              <div className="vision-image-badge">
+                <span>צורפות ירושלמית אותנטית • חומרי גלם מובחרים • חיבור למקורות</span>
+              </div>
+            </div>
           </div>
 
           {/* Pillars */}

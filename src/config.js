@@ -64,9 +64,10 @@ export const siteConfig = {
       description: 'שרשרת כסף יפהפייה ועדינה, המשלבת את שער המקדש המפואר, צלליות עולי רגל בדרכם לעיר הקודש וסלסול גפן עשיר. יצירה המבטאת שמחה, כמיהה וחיבור שורשי.',
       badge: 'אהוב במיוחד',
       images: [
-        '/images/products/item1_original.jpg',
-        '/images/products/item1_box.jpg',
-        '/images/products/item1_macro.jpg'
+        '/images/products/silver_temple_main.jpg',
+        '/images/products/silver_temple_pomegranate.jpg',
+        '/images/products/silver_temple_slate.jpg',
+        '/images/products/silver_temple_wide.jpg'
       ]
     },
     {
@@ -81,8 +82,10 @@ export const siteConfig = {
       description: 'פנורמה מוזהבת של חומות ירושלים, מגדלי העיר ושער בית המקדש, שבמרכזו מעוצב לב פנימי עדין ומלא משמעות. שרשרת אלגנטית המפיצה אור.',
       badge: 'הנמכר ביותר',
       images: [
-        '/images/products/item2_original.jpg',
-        '/images/products/item2_box.jpg'
+        '/images/products/gold_gates_arch.jpg',
+        '/images/products/gold_gates_flatlay.jpg',
+        '/images/products/gold_gates_macro.jpg',
+        '/images/products/gold_gates_linen.jpg'
       ]
     },
     {
@@ -97,9 +100,10 @@ export const siteConfig = {
       description: 'תליון לב עמוק ומרגש: צדו האחד כולל חיתוך אותיות קליגרפי מופתי של הפסוק המלא "אם אשכחך ירושלים תשכח ימיני", וצדו השני מציג תבליט מדויק של שער בית המקדש. המתנה המושלמת.',
       badge: 'מהדורה מיוחדת',
       images: [
-        '/images/products/item3_original.jpg',
-        '/images/products/item3_box.jpg',
-        '/images/products/item3_macro.jpg'
+        '/images/products/gold_heart_stone.jpg',
+        '/images/products/gold_heart_cushion.jpg',
+        '/images/products/gold_heart_blossom.jpg',
+        '/images/products/gold_heart_wide.jpg'
       ]
     },
     {
@@ -114,9 +118,10 @@ export const siteConfig = {
       description: 'תכשיט יומיומי אלגנטי, עדין ונוח לענידה, המציג את חזית בית המקדש המפואר עם עיטורי כתר וסלסולים בסגנון צורפות מסורתי.',
       badge: 'מחיר היכרות',
       images: [
-        '/images/products/item4_original.jpg',
-        '/images/products/item4_styled.jpg',
-        '/images/products/item4_macro.jpg'
+        '/images/products/gold_crown_wood.jpg',
+        '/images/products/gold_crown_linen.jpg',
+        '/images/products/gold_crown_sunlight.jpg',
+        '/images/products/gold_crown_wide.jpg'
       ]
     }
   ]

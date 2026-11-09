@@ -1,47 +1,81 @@
-import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { BitIcon, WhatsAppIcon } from './Icons';
+import React, { useState, useEffect } from 'react';
+import { ChevronRight, ChevronLeft, Mail } from 'lucide-react';
+import { WhatsAppIcon } from './Icons';
+import { siteConfig } from '../config';
 
-export function ProductCard({ product, onSelectForOrder }) {
+export function ProductCard({ product }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const images = product.images && product.images.length > 0
     ? product.images
-    : ['/images/products/item3_original.jpg'];
+    : ['/images/products/gold_heart_stone.jpg'];
+
+  // התמונות הנעות: החלפה חלקה ואוטומטית של התמונות כל 3.8 שניות
+  useEffect(() => {
+    if (isPaused || images.length <= 1) return;
+
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 3800);
+
+    return () => clearInterval(timer);
+  }, [isPaused, images.length]);
 
   const nextImage = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  // קישור ישיר ל-WhatsApp עם הודעה מוכנה ומדויקת לפריט זה
+  const waMessage = `שלום משכן לב ✨\nאני מעוניין/ת להזמין את: ${product.name}\nמחיר: ₪${product.price}\n\nאשמח לקבל פרטים לביצוע תשלום (Bit / העברה) ומשלוח!`;
+  const waUrl = `https://wa.me/${siteConfig.contact.whatsappPhone}?text=${encodeURIComponent(waMessage)}`;
+
+  // קישור ישיר למייל עם נושא וגוף הודעה מוכנים להזמנה
+  const mailSubject = encodeURIComponent(`הזמנת תכשיט: ${product.name} - משכן לב`);
+  const mailBody = encodeURIComponent(
+    `שלום צוות משכן לב,\n\nברצוני להזמין את התכשיט הבא:\n• פריט: ${product.name}\n• דגם/חומר: ${product.category}\n• מחיר: ₪${product.price}\n\nפרטי יצירת קשר שלי למשלוח:\nשם מלא:\nטלפון:\nכתובת מלאה למשלוח:\nהערות:\n\nתודה רבה!`
+  );
+  const mailUrl = `mailto:${siteConfig.contact.email}?subject=${mailSubject}&body=${mailBody}`;
+
   return (
-    <article className="product-card" aria-label={product.name}>
+    <article 
+      className="product-card" 
+      aria-label={product.name}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
       
-      {/* Visual media container with rotating carousel */}
+      {/* אזור תמונות נעות (Moving Images Slideshow) */}
       <div className="product-media-wrapper">
         
-        {/* Badge */}
+        {/* תגית מוצר */}
         {product.badge && (
           <span className="product-badge">
             {product.badge}
           </span>
         )}
 
-        {/* Carousel image */}
+        {/* תצוגת התמונה הנעה עם אנימציית מעבר חלקה */}
         <div className="carousel-view">
           <img
+            key={currentImageIndex}
             src={images[currentImageIndex]}
             alt={`${product.name} - תצוגה ${currentImageIndex + 1}`}
-            className="product-image"
+            className="product-image moving-image"
             loading="lazy"
           />
 
-          {/* Navigation arrows (if > 1 image) */}
+          {/* חיצי מעבר ידני */}
           {images.length > 1 && (
             <>
               <button
@@ -64,7 +98,7 @@ export function ProductCard({ product, onSelectForOrder }) {
             </>
           )}
 
-          {/* Dots */}
+          {/* נקודות ניווט */}
           {images.length > 1 && (
             <div className="carousel-dots" role="tablist" aria-label="בחירת תמונה">
               {images.map((_, idx) => (
@@ -85,7 +119,7 @@ export function ProductCard({ product, onSelectForOrder }) {
           )}
         </div>
 
-        {/* Thumbnail preview strip */}
+        {/* שורת תמונות ממוזערות */}
         {images.length > 1 && (
           <div className="thumbnail-strip">
             {images.map((imgUrl, idx) => (
@@ -104,7 +138,7 @@ export function ProductCard({ product, onSelectForOrder }) {
 
       </div>
 
-      {/* Product Details */}
+      {/* פרטי המוצר */}
       <div className="product-info">
         
         <div className="product-header">
@@ -124,7 +158,7 @@ export function ProductCard({ product, onSelectForOrder }) {
           {product.description}
         </p>
 
-        {/* Specifications */}
+        {/* מפרט חומרים */}
         <div className="product-specs-box">
           <div className="spec-row">
             <span className="spec-label">חומר:</span>
@@ -136,18 +170,32 @@ export function ProductCard({ product, onSelectForOrder }) {
           </div>
         </div>
 
-        {/* Direct Order Button */}
-        <button
-          type="button"
-          className="btn-direct-order"
-          onClick={() => onSelectForOrder(product)}
-        >
-          <div className="direct-order-icons">
-            <BitIcon size={18} />
-            <WhatsAppIcon size={18} />
-          </div>
-          <span>להזמנה מהירה ב-Bit / WhatsApp</span>
-        </button>
+        {/* קישורים ישירים: וואטסאפ ומייל */}
+        <div className="product-actions-group">
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-direct-wa"
+            title={`הזמנה ישירה בוואטסאפ של ${product.name}`}
+          >
+            <WhatsAppIcon size={19} />
+            <span>הזמנה ישירה ב-WhatsApp</span>
+          </a>
+
+          <a
+            href={mailUrl}
+            className="btn-direct-mail"
+            title={`הזמנה ישירה במייל של ${product.name}`}
+          >
+            <Mail size={18} />
+            <span>הזמנה ישירה במייל</span>
+          </a>
+        </div>
+
+        <div className="product-payment-hint">
+          <span>✨ תשלום ב-Bit למספר: <strong>{siteConfig.contact.displayPhone}</strong> | משלוח מהיר לכל הארץ</span>
+        </div>
 
       </div>
 

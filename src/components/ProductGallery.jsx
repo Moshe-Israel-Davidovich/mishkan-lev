@@ -3,7 +3,7 @@ import { siteConfig } from '../config';
 import { ProductCard } from './ProductCard';
 import { GemIcon } from './Icons';
 
-export function ProductGallery({ onSelectForOrder }) {
+export function ProductGallery() {
   return (
     <section id="products-section" className="products-section" aria-labelledby="products-title">
       <div className="section-container">
@@ -18,7 +18,7 @@ export function ProductGallery({ onSelectForOrder }) {
             שרשראות ותליוני בית המקדש וירושלים
           </h2>
           <p className="section-subtitle">
-            עבודת צורפות עדינה בדיוק מירבי, חומרים מובחרים ועמידים ליופי מלא משמעות
+            תמונות מתחלפות הממחישות את עבודת הצורפות העדינה, חומרי הגלם ויופיו של כל פריט
           </p>
         </div>
 
@@ -28,7 +28,6 @@ export function ProductGallery({ onSelectForOrder }) {
             <ProductCard
               key={product.id}
               product={product}
-              onSelectForOrder={onSelectForOrder}
             />
           ))}
         </div>

@@ -6,7 +6,7 @@ const StoreContext = createContext();
 
 const STORAGE_KEYS = {
   CONFIG: 'mishkan_store_config_v1',
-  PRODUCTS: 'mishkan_products_v1',
+  PRODUCTS: 'mishkan_products_v2',
   ORDERS: 'mishkan_orders_v1'
 };
 

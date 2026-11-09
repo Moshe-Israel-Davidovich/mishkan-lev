@@ -1,4 +1,5 @@
 import React from 'react';
+import { Mail } from 'lucide-react';
 import { siteConfig } from '../config';
 import { BrandEmblem, AccessibilityIcon, WhatsAppIcon } from './Icons';
 import { useAccessibility } from '../context/AccessibilityContext';
@@ -8,6 +9,10 @@ export function Navbar() {
 
   const waGeneralLink = `https://wa.me/${siteConfig.contact.whatsappPhone}?text=${encodeURIComponent(
     'שלום משכן לב, אשמח לפרטים נוספים על התכשיטים וההזמנות ✨'
+  )}`;
+
+  const mailGeneralLink = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
+    'פנייה והזמנה מבוטיק משכן לב'
   )}`;
 
   return (
@@ -62,6 +67,16 @@ export function Navbar() {
               <AccessibilityIcon size={20} />
             </button>
 
+            {/* Direct Email Contact Button */}
+            <a
+              href={mailGeneralLink}
+              className="nav-mail-btn"
+              title="פנייה ישירה במייל"
+            >
+              <Mail size={17} />
+              <span className="nav-mail-text">מייל</span>
+            </a>
+
             {/* Direct WhatsApp Contact Button */}
             <a
               href={waGeneralLink}
@@ -71,7 +86,7 @@ export function Navbar() {
               title="פנייה מהירה בוואטסאפ"
             >
               <WhatsAppIcon size={18} />
-              <span className="nav-wa-text">שירות בוואטסאפ</span>
+              <span className="nav-wa-text">WhatsApp</span>
             </a>
 
           </div>

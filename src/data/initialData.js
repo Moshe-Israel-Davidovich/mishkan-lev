@@ -68,9 +68,10 @@ export const INITIAL_PRODUCTS = [
     rating: 5.0,
     reviewsCount: 18,
     images: [
-      "/images/products/item1_original.jpg",
-      "/images/products/item1_lifestyle.jpg",
-      "/images/products/item1_macro.jpg"
+      "/images/products/silver_temple_main.jpg",
+      "/images/products/silver_temple_pomegranate.jpg",
+      "/images/products/silver_temple_slate.jpg",
+      "/images/products/silver_temple_wide.jpg"
     ]
   },
   {
@@ -89,9 +90,10 @@ export const INITIAL_PRODUCTS = [
     rating: 4.9,
     reviewsCount: 32,
     images: [
-      "/images/products/item2_original.jpg",
-      "/images/products/item2_lifestyle.jpg",
-      "/images/products/item2_box.jpg"
+      "/images/products/gold_gates_arch.jpg",
+      "/images/products/gold_gates_flatlay.jpg",
+      "/images/products/gold_gates_macro.jpg",
+      "/images/products/gold_gates_linen.jpg"
     ]
   },
   {
@@ -110,10 +112,10 @@ export const INITIAL_PRODUCTS = [
     rating: 5.0,
     reviewsCount: 44,
     images: [
-      "/images/products/item3_original.jpg",
-      "/images/products/item3_macro.jpg",
-      "/images/products/item3_lifestyle.jpg",
-      "/images/products/item3_portrait.jpg"
+      "/images/products/gold_heart_stone.jpg",
+      "/images/products/gold_heart_cushion.jpg",
+      "/images/products/gold_heart_blossom.jpg",
+      "/images/products/gold_heart_wide.jpg"
     ]
   },
   {
@@ -132,10 +134,10 @@ export const INITIAL_PRODUCTS = [
     rating: 4.8,
     reviewsCount: 15,
     images: [
-      "/images/products/item4_original.jpg",
-      "/images/products/item4_lifestyle.jpg",
-      "/images/products/item4_styled.jpg",
-      "/images/products/item4_macro.jpg"
+      "/images/products/gold_crown_wood.jpg",
+      "/images/products/gold_crown_linen.jpg",
+      "/images/products/gold_crown_sunlight.jpg",
+      "/images/products/gold_crown_wide.jpg"
     ]
   }
 ];

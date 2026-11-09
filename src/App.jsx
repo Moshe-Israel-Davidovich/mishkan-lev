@@ -6,16 +6,16 @@ import { Hero } from './components/Hero';
 import { ProductGallery } from './components/ProductGallery';
 import { VisionSection } from './components/VisionSection';
 import { CraftSection } from './components/CraftSection';
+import { DirectContactSection } from './components/DirectContactSection';
 import { Footer } from './components/Footer';
 
-import { QuickOrderModal } from './components/QuickOrderModal';
+import { FloatingQuickBar } from './components/FloatingQuickBar';
 import { LegalModal } from './components/LegalModal';
 import { AccessibilityToolbar } from './components/AccessibilityToolbar';
 
 import './styles/theme.css';
 
 function MainLandingPage() {
-  const [selectedProductForOrder, setSelectedProductForOrder] = useState(null);
   const [activeLegalDoc, setActiveLegalDoc] = useState(null);
 
   return (
@@ -26,27 +26,25 @@ function MainLandingPage() {
         דלג לתוכן מרכזי
       </a>
 
-      {/* סרגל עליון וניווט */}
+      {/* סרגל עליון וניווט מהיר */}
       <Navbar />
 
-      {/* גוף דף הנחיתה */}
+      {/* גוף דף הנחיתה — פשוט, קל וממיר */}
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <ProductGallery onSelectForOrder={(product) => setSelectedProductForOrder(product)} />
+        <ProductGallery />
         <VisionSection />
         <CraftSection />
+        <DirectContactSection />
       </main>
 
-      {/* פוטר ומידע משפטי */}
+      {/* פוטר */}
       <Footer onOpenLegalDoc={(docId) => setActiveLegalDoc(docId)} />
 
-      {/* מודאל הזמנה מהירה ב-Bit / WhatsApp */}
-      <QuickOrderModal
-        product={selectedProductForOrder}
-        onClose={() => setSelectedProductForOrder(null)}
-      />
+      {/* סרגל צף תחתון עם גישה ישירה לווטסאפ ולמייל */}
+      <FloatingQuickBar />
 
-      {/* מודאל מסמכים משפטיים ונהלים (חוק הגנת הצרכן, אחריות ונגישות) */}
+      {/* מודאל מסמכים משפטיים ונהלים (נפתח בלחיצה מהפוטר בלבד) */}
       <LegalModal
         activeDocId={activeLegalDoc}
         onClose={() => setActiveLegalDoc(null)}
