@@ -40,6 +40,7 @@ export const siteConfig = {
     whatsappPhone: "972501234567",
     // מספר לתצוגה באתר
     displayPhone: "050-1234567",
+    phone: "050-1234567",
 
     // כתובת דוא"ל
     email: "contact@mishkan-lev.co.il",

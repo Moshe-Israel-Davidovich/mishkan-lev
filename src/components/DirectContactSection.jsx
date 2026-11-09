@@ -85,7 +85,7 @@ export function DirectContactSection() {
               העברה מהירה ומאובטחת באפליקציית Bit ללא כרטיסי אשראי, או שיחה ישירה למענה אנושי.
             </p>
             <a
-              href={`tel:${contact.phone.replace(/[^0-9]/g, '')}`}
+              href={`tel:${(contact.phone || contact.displayPhone || '').replace(/[^0-9]/g, '')}`}
               className="btn-card-phone"
             >
               <Phone size={16} />
