@@ -1,10 +1,11 @@
-import React from 'react';
-import { Phone, Mail, ArrowLeft } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, ArrowLeft, Copy, Check } from 'lucide-react';
 import { siteConfig } from '../config';
 import { WhatsAppIcon, BitIcon, ShieldIcon, TruckIcon } from './Icons';
 
 export function DirectContactSection() {
   const { contact } = siteConfig;
+  const [copiedBit, setCopiedBit] = useState(false);
 
   const waUrl = `https://wa.me/${contact.whatsappPhone}?text=${encodeURIComponent(
     'שלום משכן לב ✨ הגעתי מדף הנחיתה ואשמח לפרטים על התכשיטים וההזמנה!'
@@ -15,6 +16,14 @@ export function DirectContactSection() {
   )}&body=${encodeURIComponent(
     'שלום צוות משכן לב,\n\nאשמח לפרטים לגבי הזמנה ותשלום.\n\nשם:\nטלפון:\nתכשיט מבוקש:\nכתובת למשלוח:\n\nתודה רבה!'
   )}`;
+
+  const handleCopyBit = () => {
+    if (navigator.clipboard && contact.displayPhone) {
+      navigator.clipboard.writeText(contact.displayPhone);
+      setCopiedBit(true);
+      setTimeout(() => setCopiedBit(false), 2400);
+    }
+  };
 
   return (
     <section id="contact-section" className="contact-section" aria-labelledby="contact-heading">
@@ -75,23 +84,25 @@ export function DirectContactSection() {
             <span className="contact-card-note">{contact.email}</span>
           </div>
 
-          {/* Bit & Phone Card */}
+          {/* Bit Card - Strictly Bit */}
           <div className="contact-card contact-card-bit">
             <div className="contact-card-icon bit-icon-bg">
               <BitIcon size={28} />
             </div>
-            <h3>תשלום ב-Bit / טלפון</h3>
+            <h3>תשלום ישיר ב-Bit</h3>
             <p>
-              העברה מהירה באפליקציית Bit למספר הטלפון או שיחה ישירה.
+              העברה מהירה ומאובטחת באפליקציית Bit ישירות למספר ללא צורך בכרטיסי אשראי.
             </p>
-            <a
-              href={`tel:${(contact.phone || contact.displayPhone || '').replace(/[^0-9]/g, '')}`}
-              className="btn-card-phone"
+            <button
+              type="button"
+              onClick={handleCopyBit}
+              className="btn-card-bit"
+              title="לחצו להעתקת המספר לתשלום ב-Bit"
             >
-              <Phone size={16} />
-              <span>{contact.displayPhone}</span>
-            </a>
-            <span className="contact-card-note">נא לציין שם בהעברה ב-Bit</span>
+              {copiedBit ? <Check size={18} /> : <Copy size={16} />}
+              <span>{copiedBit ? 'המספר הועתק בהצלחה!' : `העתק מספר ל-Bit: ${contact.displayPhone}`}</span>
+            </button>
+            <span className="contact-card-note">נא לציין שם המזמין בהעברה ב-Bit</span>
           </div>
 
         </div>
@@ -108,7 +119,7 @@ export function DirectContactSection() {
           </div>
           <div className="guarantee-item">
             <BitIcon size={18} />
-            <span>תשלום מאובטח וישיר</span>
+            <span>תשלום מאובטח ב-Bit</span>
           </div>
         </div>
 

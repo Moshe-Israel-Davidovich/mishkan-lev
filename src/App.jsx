@@ -3,6 +3,7 @@ import { AccessibilityProvider } from './context/AccessibilityContext';
 
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { InfoAccordion } from './components/InfoAccordion';
 import { ProductGallery } from './components/ProductGallery';
 import { DirectContactSection } from './components/DirectContactSection';
 import { Footer } from './components/Footer';
@@ -30,6 +31,7 @@ function MainLandingPage() {
       {/* גוף דף הנחיתה — פשוט, קל וממיר */}
       <main id="main-content" tabIndex={-1}>
         <Hero />
+        <InfoAccordion />
         <ProductGallery />
         <DirectContactSection />
       </main>

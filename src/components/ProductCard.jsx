@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, Mail } from 'lucide-react';
-import { WhatsAppIcon } from './Icons';
+import { ChevronRight, ChevronLeft, Mail, ChevronDown, ChevronUp } from 'lucide-react';
+import { WhatsAppIcon, BitIcon } from './Icons';
 import { siteConfig } from '../config';
 
 export function ProductCard({ product }) {
@@ -9,6 +9,7 @@ export function ProductCard({ product }) {
   const [touchStartX, setTouchStartX] = useState(null);
   const [touchStartY, setTouchStartY] = useState(null);
   const [copiedBit, setCopiedBit] = useState(false);
+  const [isOrderDrawerOpen, setIsOrderDrawerOpen] = useState(false);
 
   const images = product.images && product.images.length > 0
     ? product.images
@@ -76,24 +77,23 @@ export function ProductCard({ product }) {
   };
 
   // קישור ישיר ל-WhatsApp עם הודעה מוכנה ומדויקת לפריט זה
-  const waMessage = `שלום משכן לב ✨\nאני מעוניין/ת להזמין את: ${product.name}\nמחיר: ₪${product.price}\n\nאשמח לקבל פרטים לביצוע תשלום (Bit / העברה) ומשלוח!`;
+  const waMessage = `שלום משכן לב ✨\nאני מעוניין/ת להזמין את: ${product.name}\nמחיר: ₪${product.price}\n\nאשמח לקבל פרטים לביצוע תשלום ב-Bit ומשלוח!`;
   const waUrl = `https://wa.me/${siteConfig.contact.whatsappPhone}?text=${encodeURIComponent(waMessage)}`;
 
   // קישור ישיר למייל עם נושא וגוף הודעה מוכנים להזמנה
   const mailSubject = encodeURIComponent(`הזמנת תכשיט: ${product.name} - משכן לב`);
   const mailBody = encodeURIComponent(
-    `שלום צוות משכן לב,\n\nברצוני להזמין את התכשיט הבא:\n• פריט: ${product.name}\n• דגם/חומר: ${product.category}\n• מחיר: ₪${product.price}\n\nפרטי יצירת קשר שלי למשלוח:\nשם מלא:\nטלפון:\nכתובת מלאה למשלוח:\nהערות:\n\nתודה רבה!`
+    `שלום צוות משכן לב,\n\nברצוני להזמין את התכשיט הבא:\n• פריט: ${product.name}\n• דגם/חומר: ${product.category}\n• מחיר: ₪${product.price}\n\nפרטי יצירת קשר שלי למשלוח:\nשם מלא:\nטלפון:\nכתובת מלאה למשלוח:\n\nתודה רבה!`
   );
   const mailUrl = `mailto:${siteConfig.contact.email}?subject=${mailSubject}&body=${mailBody}`;
 
   return (
     <article 
+      id={`product-${product.id}`}
       className="product-card" 
       aria-label={product.name}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
     >
       
       {/* אזור תמונות נעות עם תמיכת סווייפ במובייל */}
@@ -204,51 +204,69 @@ export function ProductCard({ product }) {
           </div>
         </div>
 
-        {/* קישורים ישירים: וואטסאפ ומייל */}
-        <div className="product-actions-group">
+        {/* כפתורים קומפקטיים ונפתחים בשביל להזמין */}
+        <div className="compact-order-bar">
           <a
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-direct-wa"
-            title={`הזמנה ישירה בוואטסאפ של ${product.name}`}
+            className="btn-compact-wa"
+            title={`הזמנה מהירה ב-WhatsApp של ${product.name}`}
           >
-            <WhatsAppIcon size={19} />
-            <span>הזמנה ישירה ב-WhatsApp</span>
+            <WhatsAppIcon size={18} />
+            <span>הזמנה ב-WhatsApp</span>
           </a>
 
-          <a
-            href={mailUrl}
-            className="btn-direct-mail"
-            title={`הזמנה ישירה במייל של ${product.name}`}
+          <button
+            type="button"
+            className={`btn-compact-toggle ${isOrderDrawerOpen ? 'active' : ''}`}
+            onClick={() => setIsOrderDrawerOpen(!isOrderDrawerOpen)}
+            aria-expanded={isOrderDrawerOpen}
+            title="אפשרויות תשלום ב-Bit ומייל"
           >
-            <Mail size={18} />
-            <span>הזמנה ישירה במייל</span>
-          </a>
+            <BitIcon size={16} />
+            <span>ביט ומייל</span>
+            {isOrderDrawerOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+          </button>
         </div>
 
-        <div 
-          className="product-payment-hint"
-          onClick={handleCopyBit}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              handleCopyBit();
-            }
-          }}
-          role="button"
-          tabIndex={0}
-          aria-label={`העתקת מספר טלפון לתשלום ב-Bit: ${siteConfig.contact.displayPhone}`}
-          title="לחצו להעתקת המספר לתשלום ב-Bit"
-        >
-          <span>
-            {copiedBit ? (
-              <strong className="copied-toast">✅ המספר {siteConfig.contact.displayPhone} הועתק!</strong>
-            ) : (
-              <>✨ תשלום ב-Bit למספר: <strong>{siteConfig.contact.displayPhone}</strong> <span className="copy-hint-pill">(העתקה)</span> | משלוח לכל הארץ</>
-            )}
-          </span>
-        </div>
+        {/* מגירת הזמנה נפתחת (Bit ומייל) */}
+        {isOrderDrawerOpen && (
+          <div className="order-drawer-content">
+            <div 
+              className="drawer-bit-box"
+              onClick={handleCopyBit}
+              role="button"
+              tabIndex={0}
+              title="לחצו להעתקת המספר לתשלום ב-Bit"
+            >
+              <BitIcon size={18} className="bit-drawer-icon" />
+              <div className="drawer-bit-text">
+                {copiedBit ? (
+                  <strong className="copied-toast">✅ המספר {siteConfig.contact.displayPhone} הועתק ל-Bit!</strong>
+                ) : (
+                  <>
+                    <span>העברה ב-Bit למספר: <strong>{siteConfig.contact.displayPhone}</strong></span>
+                    <span className="bit-tap-pill">(לחצו להעתקה)</span>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <a
+              href={mailUrl}
+              className="btn-drawer-mail"
+              title={`הזמנה ישירה במייל של ${product.name}`}
+            >
+              <Mail size={16} />
+              <span>הזמנה ישירה בדוא"ל</span>
+            </a>
+
+            <div className="drawer-shipping-hint">
+              <span>משלוח מהיר לכל הארץ • חינם בהזמנה מעל ₪{siteConfig.shipping.freeThreshold}</span>
+            </div>
+          </div>
+        )}
 
       </div>
 

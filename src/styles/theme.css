@@ -4707,59 +4707,391 @@ a {
   }
 }
 
-/* Extra Small Mobile Devices (<= 380px: iPhone SE, older Androids) */
-@media (max-width: 380px) {
-  .hero-section {
-    padding: 1.25rem 0.65rem 1.75rem;
+/* ==========================================================================
+   17. Image-First Hero, Target Pulse, Info Accordion & Compact Order Controls
+   ========================================================================== */
+
+/* Hero Image-First Layout */
+.hero-image-first-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  text-align: center;
+}
+
+.hero-compact-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.hero-image-frame.clickable-frame {
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.hero-image-frame.clickable-frame:hover {
+  transform: scale(1.015);
+  box-shadow: 0 20px 42px -10px rgba(45, 41, 38, 0.2), 0 6px 16px rgba(197, 160, 89, 0.2);
+}
+
+.image-click-hint {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-gold-deep);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--color-gold-soft);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+/* Target Pulse when scrolled directly from Hero */
+@keyframes targetPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.85);
+    transform: scale(1);
   }
-  .hero-title {
-    font-size: 1.7rem;
+  50% {
+    box-shadow: 0 0 0 10px rgba(197, 160, 89, 0.25);
+    transform: scale(1.025);
   }
-  .product-info {
-    padding: 1rem 0.75rem;
-  }
-  .product-title {
-    font-size: 1.18rem;
-  }
-  .current-price {
-    font-size: 1.3rem;
-  }
-  .product-specs-box {
-    padding: 0.55rem 0.7rem;
-    font-size: 0.78rem;
-  }
-  .spec-label {
-    min-width: 38px;
-  }
-  .btn-direct-wa {
-    font-size: 0.92rem;
-    padding: 0.75rem 1rem;
-  }
-  .btn-direct-mail {
-    font-size: 0.88rem;
-    padding: 0.7rem 1rem;
-  }
-  .floating-quick-bar {
-    padding: 0.35rem 0.45rem;
-    gap: 0.3rem;
-  }
-  .floating-wa-btn {
-    padding: 0.55rem 0.8rem;
-    font-size: 0.8rem;
-  }
-  .floating-phone-btn {
-    padding: 0.55rem 0.65rem;
-    font-size: 0.75rem;
-  }
-  .floating-mail-btn {
-    padding: 0.55rem;
-    width: 40px;
-    justify-content: center;
-  }
-  .floating-mail-text {
-    display: none;
+  100% {
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0);
+    transform: scale(1);
   }
 }
+
+.highlight-target-card {
+  animation: targetPulse 1.8s ease-in-out;
+  border-color: var(--color-gold-primary) !important;
+}
+
+/* --- Info Accordion Section (הסבר קטן נפתח) --- */
+.info-accordion-section {
+  padding: 1.75rem 1rem 2rem;
+  background-color: #faf8f5;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.info-accordion-container {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.accordion-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.accordion-card.open {
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.14);
+}
+
+.accordion-header-btn {
+  width: 100%;
+  padding: 0.95rem 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+  font-family: inherit;
+  touch-action: manipulation;
+}
+
+.accordion-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.accordion-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.gold-icon {
+  color: var(--color-gold-deep);
+}
+
+.green-icon {
+  color: #16a34a;
+}
+
+.chevron-indicator {
+  color: var(--color-gold-deep);
+  transition: transform 0.25s ease;
+}
+
+.chevron-indicator.rotate {
+  transform: rotate(180deg);
+}
+
+.accordion-drawer-body {
+  padding: 0 1.25rem 1.15rem;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 0.95rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  animation: fadeIn 0.25s ease-out;
+}
+
+.how-steps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.how-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.step-num-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--color-gold-tint);
+  color: var(--color-gold-deep);
+  border: 1px solid var(--color-gold-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.how-step-item strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--color-text-main);
+  margin-bottom: 0.15rem;
+}
+
+/* --- Compact & Expandable Order Buttons Under Products --- */
+.compact-order-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-compact-wa {
+  flex: 1.3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #25D366;
+  color: #ffffff;
+  padding: 0.7rem 0.9rem;
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.25);
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.btn-compact-wa:hover {
+  background-color: #1ebc57;
+  transform: translateY(-1px);
+}
+
+.btn-compact-wa:active {
+  transform: scale(0.98);
+}
+
+.btn-compact-toggle {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background-color: #fff9ed;
+  color: var(--color-gold-deep);
+  border: 1.5px solid var(--color-gold-primary);
+  padding: 0.7rem 0.75rem;
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.btn-compact-toggle:hover,
+.btn-compact-toggle.active {
+  background-color: var(--color-gold-tint);
+  border-color: var(--color-gold-deep);
+}
+
+.order-drawer-content {
+  margin-top: 0.85rem;
+  padding: 0.85rem;
+  background-color: #faf7f2;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-gold-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.drawer-bit-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  background-color: #ffffff;
+  border: 1.5px dashed var(--color-gold-primary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  touch-action: manipulation;
+}
+
+.drawer-bit-box:hover,
+.drawer-bit-box:active {
+  background-color: #fdf9f0;
+}
+
+.bit-drawer-icon {
+  color: var(--color-gold-deep);
+  flex-shrink: 0;
+}
+
+.drawer-bit-text {
+  font-size: 0.82rem;
+  color: var(--color-text-main);
+}
+
+.bit-tap-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-gold-deep);
+  margin-right: 0.35rem;
+}
+
+.btn-drawer-mail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  background-color: #ffffff;
+  color: var(--color-gold-deep);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.btn-drawer-mail:hover {
+  border-color: var(--color-gold-primary);
+  background-color: var(--color-gold-tint);
+}
+
+.drawer-shipping-hint {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* Floating Bit Button in Quick Bar */
+.floating-bit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background-color: #fff9ed;
+  color: #a6833e;
+  border: 1px solid var(--color-gold-soft);
+  padding: 0.6rem 0.95rem;
+  min-height: 44px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+
+.floating-bit-btn:hover {
+  background-color: var(--color-gold-tint);
+  border-color: var(--color-gold-primary);
+  color: var(--color-gold-deep);
+}
+
+.floating-bit-btn:active {
+  transform: scale(0.97);
+}
+
+/* Contact Card Bit Button */
+.btn-card-bit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff9ed;
+  color: #a6833e;
+  border: 1.5px solid var(--color-gold-primary);
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 100%;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.btn-card-bit:hover {
+  background-color: var(--color-gold-tint);
+  border-color: var(--color-gold-deep);
+}
+
 
 /* --- טופס דיגיטלי להודעת ביטול עסקה (חוק הגנת הצרכן) --- */
 .cancellation-quick-form-card {
