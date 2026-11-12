@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Type, Sun, Moon, Eye, ZapOff, RotateCcw, FileText, X } from 'lucide-react';
 import { AccessibilityIcon } from './Icons';
 import { useAccessibility } from '../context/AccessibilityContext';
@@ -19,6 +19,18 @@ export function AccessibilityToolbar({ onOpenLegalDoc }) {
     setIsMenuOpen,
     resetAccessibility
   } = useAccessibility();
+
+  // סגירה במקש Escape (WCAG 2.1.2)
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen, setIsMenuOpen]);
 
   return (
     <>

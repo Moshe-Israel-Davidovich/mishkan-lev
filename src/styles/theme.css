@@ -32,10 +32,10 @@
   --color-border-gold: #C5A059;     /* גבול זהב */
 
   /* צבעי פעולה וסליקה */
-  --color-bit: #009E9E;             /* כחול-טורקיז Bit רשמי קריא */
-  --color-bit-hover: #008282;
-  --color-whatsapp: #1EBE5D;        /* ירוק וואטסאפ רשמי */
-  --color-whatsapp-hover: #169E4B;
+  --color-bit: #008282;             /* כחול-טורקיז Bit רשמי קריא */
+  --color-bit-hover: #006666;
+  --color-whatsapp: #0F7A43;        /* ירוק וואטסאפ מונגש ת"י 5568 AA (יחס ניגודיות 5.5:1 מול לבן) */
+  --color-whatsapp-hover: #0B5E33;
   --color-success: #2E7D32;         /* ירוק זית עמוק */
   --color-success-bg: #E8F5E9;
   --color-danger: #C62828;          /* אדום ארגמן עמוק */
@@ -1019,21 +1019,21 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background-color: #25D366;
+  background-color: var(--color-whatsapp);
   color: #ffffff;
   border-radius: var(--radius-sm);
   padding: 0.85rem 1.6rem;
   font-size: var(--text-base);
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 14px rgba(15, 122, 67, 0.35);
   transition: all var(--transition-fast);
 }
 
 .btn-hero-wa:hover {
-  background-color: #1ebc57;
+  background-color: var(--color-whatsapp-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 6px 18px rgba(15, 122, 67, 0.45);
 }
 
 .btn-hero-mail {
@@ -1655,7 +1655,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background-color: #25D366;
+  background-color: var(--color-whatsapp);
   color: #ffffff;
   padding: 0.85rem 1.25rem;
   min-height: 48px;
@@ -1663,20 +1663,20 @@ a {
   font-weight: 700;
   font-size: 0.98rem;
   text-decoration: none;
-  box-shadow: 0 3px 12px rgba(37, 211, 102, 0.28);
+  box-shadow: 0 3px 12px rgba(15, 122, 67, 0.28);
   transition: all var(--transition-fast);
   touch-action: manipulation;
 }
 
 .btn-direct-wa:hover {
-  background-color: #1ebc57;
+  background-color: var(--color-whatsapp-hover);
   transform: translateY(-2px);
-  box-shadow: 0 5px 16px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 5px 16px rgba(15, 122, 67, 0.4);
 }
 
 .btn-direct-wa:active {
   transform: scale(0.98);
-  background-color: #1ebc57;
+  background-color: var(--color-whatsapp-hover);
 }
 
 .btn-direct-mail {
@@ -3710,7 +3710,14 @@ a {
   font-size: 0.88rem;
   color: var(--color-text-muted);
   line-height: 1.6;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.65rem;
+}
+
+.footer-business-identity {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
 }
 
 .footer-security-seal {
@@ -3926,7 +3933,7 @@ a {
 
 .wa-icon-bg {
   background-color: #e8f5e9;
-  color: #25D366;
+  color: var(--color-whatsapp);
 }
 
 .mail-icon-bg {
@@ -3959,21 +3966,21 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #25D366;
+  background-color: var(--color-whatsapp);
   color: #ffffff;
   padding: 0.75rem 1.4rem;
   border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 0.92rem;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 4px 12px rgba(15, 122, 67, 0.3);
   transition: all var(--transition-fast);
   width: 100%;
   justify-content: center;
 }
 
 .btn-card-wa:hover {
-  background-color: #1ebc57;
+  background-color: var(--color-whatsapp-hover);
   transform: translateY(-2px);
 }
 
@@ -4088,7 +4095,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  background-color: #25D366;
+  background-color: var(--color-whatsapp);
   color: #ffffff;
   padding: 0.6rem 1.15rem;
   min-height: 44px;
@@ -4096,15 +4103,15 @@ a {
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
-  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.32);
+  box-shadow: 0 2px 10px rgba(15, 122, 67, 0.32);
   transition: all 0.2s ease;
   white-space: nowrap;
   touch-action: manipulation;
 }
 
 .floating-wa-btn:hover {
-  background-color: #1ebc57;
-  transform: translateY(-1px);
+  background-color: var(--color-whatsapp-hover);
+  transform: translateY(-2px);
 }
 
 .floating-wa-btn:active {
@@ -4752,4 +4759,129 @@ a {
   .floating-mail-text {
     display: none;
   }
+}
+
+/* --- טופס דיגיטלי להודעת ביטול עסקה (חוק הגנת הצרכן) --- */
+.cancellation-quick-form-card {
+  background-color: var(--color-bg-base);
+  border: 1.5px solid var(--color-gold-soft);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cancellation-form-header h4 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 0.35rem;
+}
+
+.cancellation-form-header p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.cancellation-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.cancel-inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.75rem;
+}
+
+.cancel-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.cancel-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.cancel-field input {
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  transition: border-color var(--transition-fast);
+}
+
+.cancel-field input:focus {
+  outline: none;
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2);
+}
+
+.cancel-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn-cancel-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-whatsapp);
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-cancel-wa:hover {
+  background-color: var(--color-whatsapp-hover);
+}
+
+.btn-cancel-mail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: var(--color-gold-deep);
+  border: 1.5px solid var(--color-gold-primary);
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-cancel-mail:hover {
+  background-color: var(--color-gold-tint);
+}
+
+.cancellation-success-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: var(--radius-sm);
+  color: #1b5e20;
+  font-size: 0.92rem;
+  font-weight: 600;
 }

@@ -181,6 +181,8 @@ export function Hero() {
           className="hero-visual"
           onMouseEnter={() => setIsHeroPaused(true)}
           onMouseLeave={() => setIsHeroPaused(false)}
+          onFocus={() => setIsHeroPaused(true)}
+          onBlur={() => setIsHeroPaused(false)}
           onTouchStart={handleHeroTouchStart}
           onTouchEnd={handleHeroTouchEnd}
         >

@@ -24,6 +24,13 @@ export function Footer({ onOpenLegalDoc }) {
           <p className="footer-brand-desc">
             תכשיטי בית המקדש וירושלים מכסף סטרלינג 925 וציפוי זהב 18K.
           </p>
+          <div className="footer-business-identity">
+            <span>{siteConfig.brand.businessLegalName || siteConfig.brand.name}</span>
+            {siteConfig.brand.businessId ? (
+              <span> • ע.מ./ח.פ. {siteConfig.brand.businessId}</span>
+            ) : null}
+            <span> • {siteConfig.contact.address}</span>
+          </div>
           <div className="footer-security-seal">
             <ShieldIcon size={16} />
             <span>אתר מאובטח • ציות לחוק הגנת הצרכן • תשלום ישיר ב-Bit</span>
@@ -36,6 +43,16 @@ export function Footer({ onOpenLegalDoc }) {
           <ul className="footer-links-list">
             <li><a href="#products-section">קולקציית התכשיטים</a></li>
             <li><a href="#contact-section">הזמנות ויצירת קשר</a></li>
+            <li>
+              <button
+                type="button"
+                className="footer-link-btn"
+                onClick={() => onOpenLegalDoc('cancellation')}
+                title="טופס דיגיטלי להודעת ביטול עסקה כחוק"
+              >
+                <span>הודעה על ביטול עסקה (טופס מקוון)</span>
+              </button>
+            </li>
             <li>
               <button
                 type="button"

@@ -92,6 +92,8 @@ export function ProductCard({ product }) {
       aria-label={product.name}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
     >
       
       {/* אזור תמונות נעות עם תמיכת סווייפ במובייל */}
@@ -228,8 +230,15 @@ export function ProductCard({ product }) {
         <div 
           className="product-payment-hint"
           onClick={handleCopyBit}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleCopyBit();
+            }
+          }}
           role="button"
           tabIndex={0}
+          aria-label={`העתקת מספר טלפון לתשלום ב-Bit: ${siteConfig.contact.displayPhone}`}
           title="לחצו להעתקת המספר לתשלום ב-Bit"
         >
           <span>

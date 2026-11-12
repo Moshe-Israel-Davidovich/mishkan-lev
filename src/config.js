@@ -9,16 +9,24 @@
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
-const BASE = import.meta.env?.BASE_URL || '/';
+const env = (typeof import.meta !== 'undefined' && import.meta.env) ? import.meta.env : {};
+const BASE = env.BASE_URL || '/';
 const getImg = (name) => `${BASE}images/products/${name}`;
+
+// ברירות מחדל בטוחות (הערכים מוחלפים אוטומטית מ-.env.local)
+const defaultPhone = "050-1234567";
+const defaultWa = "972501234567";
+const defaultEmail = "contact@mishkan-lev.co.il";
 
 export const siteConfig = {
   // פרטי המותג הראשיים
   brand: {
-    name: "משכן לב",
+    name: env.VITE_BRAND_NAME || "משכן לב",
     tagline: "תכשיטי בית המקדש וירושלים",
     badge: "סדרת תכשיטי מקדש וירושלים — מהדורה בלעדית",
-    announcement: "משלוח מהיר לכל הארץ • תשלום ישיר ונוח ב-Bit • אחריות מלאה על כל תכשיט"
+    announcement: "משלוח מהיר לכל הארץ • תשלום ישיר ונוח ב-Bit • אחריות מלאה על כל תכשיט",
+    businessId: env.VITE_BUSINESS_ID || "", // מספר ע.מ. / ח.פ. / עוסק פטור
+    businessLegalName: env.VITE_BUSINESS_LEGAL_NAME || "משכן לב"
   },
 
   // החזון והשליחות שמאחורי היצירה
@@ -30,21 +38,27 @@ export const siteConfig = {
     quoteSource: "תהילים קל\"ז"
   },
 
-  // פרטי יצירת קשר וסליקה (החבר יכול לעדכן כאן בקלות את מספריו)
+  // פרטי יצירת קשר וסליקה (נטענים באופן מאובטח מ-.env.local ללא חשיפה ב-Git)
   contact: {
     // מספר הטלפון אליו הלקוחות יעבירו תשלום ב-Bit
-    bitPhone: "050-1234567",
-    bitRecipientName: "משכן לב",
+    bitPhone: env.VITE_BIT_PHONE || env.VITE_PHONE || defaultPhone,
+    bitRecipientName: env.VITE_BIT_RECIPIENT || "משכן לב",
 
-    // מספר WhatsApp לקבלת הזמנות ופניות (בפורמט בינלאומי, ללא פלוס וללא מקפים)
-    whatsappPhone: "972501234567",
+    // מספר WhatsApp לקבלת הזמנות ופניות (בפורמט בינלאומי ללא פלוס וללא מקפים)
+    whatsappPhone: env.VITE_WHATSAPP_PHONE || (env.VITE_PHONE ? env.VITE_PHONE.replace(/\D/g, '').replace(/^0/, '972') : defaultWa),
+    
     // מספר לתצוגה באתר
-    displayPhone: "050-1234567",
-    phone: "050-1234567",
+    displayPhone: env.VITE_DISPLAY_PHONE || env.VITE_PHONE || defaultPhone,
+    phone: env.VITE_PHONE || defaultPhone,
 
     // כתובת דוא"ל
-    email: "contact@mishkan-lev.co.il",
-    address: "ירושלים, ישראל"
+    email: env.VITE_EMAIL || defaultEmail,
+    address: env.VITE_ADDRESS || "ירושלים, ישראל",
+
+    // פרטי רכז נגישות
+    accessibilityCoordinatorName: env.VITE_A11Y_NAME || "הנהלת משכן לב",
+    accessibilityPhone: env.VITE_A11Y_PHONE || env.VITE_PHONE || defaultPhone,
+    accessibilityEmail: env.VITE_A11Y_EMAIL || env.VITE_EMAIL || defaultEmail
   },
 
   // מדיניות שילוח ואחריות

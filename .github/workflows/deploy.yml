@@ -37,6 +37,18 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: 'true'
+          VITE_PHONE: ${{ vars.VITE_PHONE || secrets.VITE_PHONE }}
+          VITE_DISPLAY_PHONE: ${{ vars.VITE_DISPLAY_PHONE || secrets.VITE_DISPLAY_PHONE }}
+          VITE_EMAIL: ${{ vars.VITE_EMAIL || secrets.VITE_EMAIL }}
+          VITE_ADDRESS: ${{ vars.VITE_ADDRESS || secrets.VITE_ADDRESS }}
+          VITE_BIT_PHONE: ${{ vars.VITE_BIT_PHONE || secrets.VITE_BIT_PHONE }}
+          VITE_BIT_RECIPIENT: ${{ vars.VITE_BIT_RECIPIENT || secrets.VITE_BIT_RECIPIENT }}
+          VITE_WHATSAPP_PHONE: ${{ vars.VITE_WHATSAPP_PHONE || secrets.VITE_WHATSAPP_PHONE }}
+          VITE_BUSINESS_ID: ${{ vars.VITE_BUSINESS_ID || secrets.VITE_BUSINESS_ID }}
+          VITE_BUSINESS_LEGAL_NAME: ${{ vars.VITE_BUSINESS_LEGAL_NAME || secrets.VITE_BUSINESS_LEGAL_NAME }}
+          VITE_A11Y_NAME: ${{ vars.VITE_A11Y_NAME || secrets.VITE_A11Y_NAME }}
+          VITE_A11Y_PHONE: ${{ vars.VITE_A11Y_PHONE || secrets.VITE_A11Y_PHONE }}
+          VITE_A11Y_EMAIL: ${{ vars.VITE_A11Y_EMAIL || secrets.VITE_A11Y_EMAIL }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
