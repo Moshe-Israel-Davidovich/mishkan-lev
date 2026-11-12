@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ArrowDown } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { siteConfig } from '../config';
-import { GemIcon, ShieldIcon, BitIcon, TruckIcon } from './Icons';
+import { GemIcon } from './Icons';
 
 const BASE = import.meta.env?.BASE_URL || '/';
 const getImg = (name) => `${BASE}images/products/${name}`;
@@ -188,33 +188,6 @@ export function Hero() {
                 {item.label}
               </button>
             ))}
-          </div>
-        </div>
-
-        {/* ביטחון ואיכות (רק ביט) */}
-        <div className="trust-ribbon">
-          <div className="trust-item">
-            <ShieldIcon size={18} className="trust-icon" />
-            <div>
-              <strong>אחריות מלאה</strong>
-              <span>איכות החומרים והסוגרים</span>
-            </div>
-          </div>
-
-          <div className="trust-item">
-            <BitIcon size={18} className="trust-icon" />
-            <div>
-              <strong>תשלום קל ב-Bit</strong>
-              <span>העברה ישירה ל-{siteConfig.contact.displayPhone}</span>
-            </div>
-          </div>
-
-          <div className="trust-item">
-            <TruckIcon size={18} className="trust-icon" />
-            <div>
-              <strong>משלוח מהיר לכל הארץ</strong>
-              <span>חינם בהזמנה מעל ₪{siteConfig.shipping.freeThreshold}</span>
-            </div>
           </div>
         </div>
 

@@ -107,19 +107,30 @@ export function DirectContactSection() {
 
         </div>
 
-        {/* Reassurance Ribbon */}
+        {/* Reassurance Ribbon — מוצג רק למטה בסוף העמוד */}
         <div className="contact-guarantee-ribbon">
           <div className="guarantee-item">
-            <ShieldIcon size={18} />
-            <span>אחריות מלאה על כל תכשיט</span>
+            <ShieldIcon size={22} className="guarantee-icon" />
+            <div className="guarantee-text">
+              <strong>אחריות מלאה</strong>
+              <span>איכות החומרים והסוגרים</span>
+            </div>
           </div>
+
           <div className="guarantee-item">
-            <TruckIcon size={18} />
-            <span>משלוחים מהירים לכל חלקי הארץ</span>
+            <BitIcon size={22} className="guarantee-icon" />
+            <div className="guarantee-text">
+              <strong>תשלום קל ב-Bit</strong>
+              <span>העברה ישירה ל-{contact.displayPhone}</span>
+            </div>
           </div>
+
           <div className="guarantee-item">
-            <BitIcon size={18} />
-            <span>תשלום מאובטח ב-Bit</span>
+            <TruckIcon size={22} className="guarantee-icon" />
+            <div className="guarantee-text">
+              <strong>משלוח מהיר לכל הארץ</strong>
+              <span>חינם בהזמנה מעל ₪{siteConfig.shipping.freeThreshold}</span>
+            </div>
           </div>
         </div>
 
