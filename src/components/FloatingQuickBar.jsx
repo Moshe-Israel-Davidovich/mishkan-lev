@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { siteConfig } from '../config';
 import { WhatsAppIcon } from './Icons';
 
@@ -14,9 +14,11 @@ export function FloatingQuickBar() {
     'הזמנת תכשיט - בוטיק משכן לב'
   )}`;
 
+  const phoneUrl = `tel:${(contact.phone || contact.displayPhone || '').replace(/[^0-9]/g, '')}`;
+
   return (
-    <aside className="floating-quick-bar" aria-label="פנייה מהירה לבוטיק">
-      <span className="floating-bar-label">הזמנות ובירורים:</span>
+    <aside className="floating-quick-bar" aria-label="פנייה והזמנה מהירה">
+      <span className="floating-bar-label">הזמנה ישירה:</span>
       
       <a
         href={waUrl}
@@ -25,8 +27,17 @@ export function FloatingQuickBar() {
         className="floating-wa-btn"
         title="פנייה ישירה ב-WhatsApp"
       >
-        <WhatsAppIcon size={18} />
-        <span>WhatsApp</span>
+        <WhatsAppIcon size={19} />
+        <span>הזמנה ב-WhatsApp</span>
+      </a>
+
+      <a
+        href={phoneUrl}
+        className="floating-phone-btn"
+        title={`חיוג / תשלום ב-Bit: ${contact.displayPhone}`}
+      >
+        <Phone size={16} />
+        <span className="floating-phone-text">Bit / שיחה</span>
       </a>
 
       <a
@@ -35,7 +46,7 @@ export function FloatingQuickBar() {
         title="פנייה ישירה במייל"
       >
         <Mail size={16} />
-        <span>מייל</span>
+        <span className="floating-mail-text">מייל</span>
       </a>
     </aside>
   );

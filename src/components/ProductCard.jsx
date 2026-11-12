@@ -6,6 +6,9 @@ import { siteConfig } from '../config';
 export function ProductCard({ product }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchStartY, setTouchStartY] = useState(null);
+  const [copiedBit, setCopiedBit] = useState(false);
 
   const images = product.images && product.images.length > 0
     ? product.images
@@ -23,15 +26,53 @@ export function ProductCard({ product }) {
   }, [isPaused, images.length]);
 
   const nextImage = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  // תמיכה מלאה בסווייפ (Swipe Gestures) במובייל
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    if (e.touches && e.touches[0]) {
+      setTouchStartX(e.touches[0].clientX);
+      setTouchStartY(e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    setIsPaused(false);
+    if (touchStartX === null || !e.changedTouches || !e.changedTouches[0]) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        nextImage();
+      } else {
+        prevImage();
+      }
+    }
+    setTouchStartX(null);
+    setTouchStartY(null);
+  };
+
+  const handleCopyBit = () => {
+    if (navigator.clipboard && siteConfig.contact.displayPhone) {
+      navigator.clipboard.writeText(siteConfig.contact.displayPhone);
+      setCopiedBit(true);
+      setTimeout(() => setCopiedBit(false), 2400);
+    }
   };
 
   // קישור ישיר ל-WhatsApp עם הודעה מוכנה ומדויקת לפריט זה
@@ -51,12 +92,14 @@ export function ProductCard({ product }) {
       aria-label={product.name}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
     >
       
-      {/* אזור תמונות נעות (Moving Images Slideshow) */}
-      <div className="product-media-wrapper">
+      {/* אזור תמונות נעות עם תמיכת סווייפ במובייל */}
+      <div 
+        className="product-media-wrapper"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         
         {/* תצוגת התמונה הנעה עם אנימציית מעבר חלקה */}
         <div className="carousel-view">
@@ -182,8 +225,20 @@ export function ProductCard({ product }) {
           </a>
         </div>
 
-        <div className="product-payment-hint">
-          <span>✨ תשלום ב-Bit למספר: <strong>{siteConfig.contact.displayPhone}</strong> | משלוח מהיר לכל הארץ</span>
+        <div 
+          className="product-payment-hint"
+          onClick={handleCopyBit}
+          role="button"
+          tabIndex={0}
+          title="לחצו להעתקת המספר לתשלום ב-Bit"
+        >
+          <span>
+            {copiedBit ? (
+              <strong className="copied-toast">✅ המספר {siteConfig.contact.displayPhone} הועתק!</strong>
+            ) : (
+              <>✨ תשלום ב-Bit למספר: <strong>{siteConfig.contact.displayPhone}</strong> <span className="copy-hint-pill">(העתקה)</span> | משלוח לכל הארץ</>
+            )}
+          </span>
         </div>
 
       </div>

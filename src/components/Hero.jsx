@@ -48,6 +48,8 @@ const HERO_SHOWCASE_ITEMS = [
 export function Hero() {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [isHeroPaused, setIsHeroPaused] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchStartY, setTouchStartY] = useState(null);
 
   // תמונות נעות בפתיח: החלפה אוטומטית חלקה כל 4.2 שניות
   useEffect(() => {
@@ -59,6 +61,32 @@ export function Hero() {
 
     return () => clearInterval(timer);
   }, [isHeroPaused]);
+
+  // סווייפ מגע אינטואיטיבי (Swipe Gestures) למובייל
+  const handleHeroTouchStart = (e) => {
+    setIsHeroPaused(true);
+    if (e.touches && e.touches[0]) {
+      setTouchStartX(e.touches[0].clientX);
+      setTouchStartY(e.touches[0].clientY);
+    }
+  };
+
+  const handleHeroTouchEnd = (e) => {
+    setIsHeroPaused(false);
+    if (touchStartX === null || !e.changedTouches || !e.changedTouches[0]) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        setActiveItemIndex((prev) => (prev + 1) % HERO_SHOWCASE_ITEMS.length);
+      } else {
+        setActiveItemIndex((prev) => (prev - 1 + HERO_SHOWCASE_ITEMS.length) % HERO_SHOWCASE_ITEMS.length);
+      }
+    }
+    setTouchStartX(null);
+    setTouchStartY(null);
+  };
 
   const activeItem = HERO_SHOWCASE_ITEMS[activeItemIndex];
 
@@ -148,13 +176,13 @@ export function Hero() {
 
         </div>
 
-        {/* Hero visual — תמונות נעות (Moving Showcase) */}
+        {/* Hero visual — תמונות נעות (Moving Showcase עם סווייפ) */}
         <div 
           className="hero-visual"
           onMouseEnter={() => setIsHeroPaused(true)}
           onMouseLeave={() => setIsHeroPaused(false)}
-          onTouchStart={() => setIsHeroPaused(true)}
-          onTouchEnd={() => setIsHeroPaused(false)}
+          onTouchStart={handleHeroTouchStart}
+          onTouchEnd={handleHeroTouchEnd}
         >
           <div className="hero-image-frame">
             <img
