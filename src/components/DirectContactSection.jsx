@@ -32,13 +32,13 @@ export function DirectContactSection() {
         <div className="section-header">
           <div className="section-badge">
             <WhatsAppIcon size={16} />
-            <span>הזמנה ישירה</span>
+            <span>הזמנה ישירה ובירורים</span>
           </div>
           <h2 id="contact-heading" className="section-title">
-            יצירת קשר ותשלום
+            יצירת קשר והזמנה
           </h2>
           <p className="section-subtitle">
-            פנייה ישירה ב-WhatsApp, במייל או תשלום ב-Bit
+            פנייה ישירה ב-WhatsApp, בדוא"ל או העברה מאובטחת ב-Bit
           </p>
         </div>
 
@@ -112,24 +112,24 @@ export function DirectContactSection() {
           <div className="guarantee-item">
             <ShieldIcon size={22} className="guarantee-icon" />
             <div className="guarantee-text">
-              <strong>אחריות מלאה</strong>
-              <span>איכות החומרים והסוגרים</span>
+              <strong>שירות אישי ומסור</strong>
+              <span>מענה מהיר וליווי עד להגעת המשלוח</span>
             </div>
           </div>
 
           <div className="guarantee-item">
             <BitIcon size={22} className="guarantee-icon" />
             <div className="guarantee-text">
-              <strong>תשלום קל ב-Bit</strong>
-              <span>העברה ישירה ל-{contact.displayPhone}</span>
+              <strong>תשלום ישיר ב-Bit</strong>
+              <span>פשוט, מהיר ומאובטח</span>
             </div>
           </div>
 
           <div className="guarantee-item">
             <TruckIcon size={22} className="guarantee-icon" />
             <div className="guarantee-text">
-              <strong>משלוח מהיר לכל הארץ</strong>
-              <span>חינם בהזמנה מעל ₪{siteConfig.shipping.freeThreshold}</span>
+              <strong>משלוח לכל חלקי הארץ</strong>
+              <span>באריזת שי מכובדת ומהודרת</span>
             </div>
           </div>
         </div>

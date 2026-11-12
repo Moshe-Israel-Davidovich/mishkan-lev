@@ -28,11 +28,11 @@ function MainLandingPage() {
       {/* סרגל עליון וניווט מהיר */}
       <Navbar />
 
-      {/* גוף דף הנחיתה — פשוט, קל וממיר */}
+      {/* גוף דף הנחיתה — פשוט, קל וממיר: תמונות ומוצרים תחילה, הסברים והזמנה למטה */}
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <InfoAccordion />
         <ProductGallery />
+        <InfoAccordion />
         <DirectContactSection />
       </main>
 

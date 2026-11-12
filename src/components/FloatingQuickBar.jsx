@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Mail } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { siteConfig } from '../config';
-import { WhatsAppIcon, BitIcon } from './Icons';
+import { WhatsAppIcon, BitIcon, GmailIcon } from './Icons';
 
 export function FloatingQuickBar() {
   const { contact } = siteConfig;
@@ -24,37 +24,39 @@ export function FloatingQuickBar() {
   };
 
   return (
-    <aside className="floating-quick-bar" aria-label="פנייה והזמנה מהירה">
-      <span className="floating-bar-label">הזמנה ישירה:</span>
-      
+    <aside className="floating-quick-bar floating-icons-only" aria-label="פנייה מהירה">
+      {/* Official WhatsApp Icon */}
       <a
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="floating-wa-btn"
-        title="פנייה ישירה ב-WhatsApp"
+        className="floating-icon-btn floating-wa-btn-official"
+        title="פנייה ב-WhatsApp"
+        aria-label="פנייה ב-WhatsApp"
       >
-        <WhatsAppIcon size={19} />
-        <span>הזמנה ב-WhatsApp</span>
+        <WhatsAppIcon size={34} />
       </a>
 
+      {/* Official Bit Icon */}
       <button
         type="button"
-        className="floating-bit-btn"
+        className={`floating-icon-btn floating-bit-btn-official ${copiedBit ? 'copied' : ''}`}
         onClick={handleBitClick}
-        title={`תשלום ב-Bit למספר: ${contact.displayPhone} (לחצו להעתקה)`}
+        title={copiedBit ? 'המספר לתשלום ב-Bit הועתק!' : `תשלום ב-Bit למספר: ${contact.displayPhone} (לחצו להעתקה)`}
+        aria-label="העתקת מספר לתשלום ב-Bit"
       >
-        <BitIcon size={16} />
-        <span>{copiedBit ? '✅ הועתק!' : 'תשלום ב-Bit'}</span>
+        {copiedBit ? <Check size={22} className="check-animate" /> : <BitIcon size={34} />}
+        {copiedBit && <span className="bit-copied-badge">הועתק!</span>}
       </button>
 
+      {/* Official Gmail Icon */}
       <a
         href={mailUrl}
-        className="floating-mail-btn"
-        title="פנייה ישירה במייל"
+        className="floating-icon-btn floating-mail-btn-official"
+        title="פנייה בדוא&quot;ל"
+        aria-label="פנייה בדוא&quot;ל"
       >
-        <Mail size={16} />
-        <span className="floating-mail-text">מייל</span>
+        <GmailIcon size={24} />
       </a>
     </aside>
   );

@@ -77,13 +77,13 @@ export function ProductCard({ product }) {
   };
 
   // קישור ישיר ל-WhatsApp עם הודעה מוכנה ומדויקת לפריט זה
-  const waMessage = `שלום משכן לב ✨\nאני מעוניין/ת להזמין את: ${product.name}\nמחיר: ₪${product.price}\n\nאשמח לקבל פרטים לביצוע תשלום ב-Bit ומשלוח!`;
+  const waMessage = `שלום משכן לב,\nאני מעוניין/ת להזמין את: ${product.name} (${product.subtitle})\nמחיר: ₪${product.price}\n\nאשמח לקבל פרטים לביצוע תשלום ב-Bit ומשלוח. תודה!`;
   const waUrl = `https://wa.me/${siteConfig.contact.whatsappPhone}?text=${encodeURIComponent(waMessage)}`;
 
   // קישור ישיר למייל עם נושא וגוף הודעה מוכנים להזמנה
   const mailSubject = encodeURIComponent(`הזמנת תכשיט: ${product.name} - משכן לב`);
   const mailBody = encodeURIComponent(
-    `שלום צוות משכן לב,\n\nברצוני להזמין את התכשיט הבא:\n• פריט: ${product.name}\n• דגם/חומר: ${product.category}\n• מחיר: ₪${product.price}\n\nפרטי יצירת קשר שלי למשלוח:\nשם מלא:\nטלפון:\nכתובת מלאה למשלוח:\n\nתודה רבה!`
+    `שלום צוות משכן לב,\n\nברצוני להזמין את התכשיט הבא:\n• פריט: ${product.name}\n• דגם: ${product.subtitle}\n• מחיר: ₪${product.price}\n\nפרטים למשלוח:\nשם מלא:\nטלפון:\nכתובת מלאה למשלוח:\n\nתודה רבה!`
   );
   const mailUrl = `mailto:${siteConfig.contact.email}?subject=${mailSubject}&body=${mailBody}`;
 
@@ -180,29 +180,13 @@ export function ProductCard({ product }) {
       <div className="product-info">
         
         <div className="product-header">
-          <span className="product-category-tag">{product.category}</span>
+          <h3 className="product-title">{product.name}</h3>
           <div className="product-pricing">
             <span className="current-price">₪{product.price}</span>
-            {product.originalPrice && product.originalPrice > product.price && (
-              <span className="original-price">₪{product.originalPrice}</span>
-            )}
           </div>
         </div>
 
-        <h3 className="product-title">{product.name}</h3>
         <p className="product-subtitle">{product.subtitle}</p>
-
-        {/* מפרט חומרים */}
-        <div className="product-specs-box">
-          <div className="spec-row">
-            <span className="spec-label">חומר:</span>
-            <span className="spec-val">{product.material}</span>
-          </div>
-          <div className="spec-row">
-            <span className="spec-label">מידות:</span>
-            <span className="spec-val">{product.dimensions}</span>
-          </div>
-        </div>
 
         {/* כפתורים קומפקטיים ונפתחים בשביל להזמין */}
         <div className="compact-order-bar">
@@ -263,7 +247,7 @@ export function ProductCard({ product }) {
             </a>
 
             <div className="drawer-shipping-hint">
-              <span>משלוח מהיר לכל הארץ • חינם בהזמנה מעל ₪{siteConfig.shipping.freeThreshold}</span>
+              <span>משלוח לכל חלקי הארץ באריזת שי מכובדת</span>
             </div>
           </div>
         )}

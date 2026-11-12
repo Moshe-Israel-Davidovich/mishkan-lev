@@ -12,13 +12,13 @@ export function ProductGallery() {
         <div className="section-header">
           <div className="section-badge">
             <GemIcon size={16} />
-            <span>הקולקציה</span>
+            <span>תכשיטי ירושלים והמקדש</span>
           </div>
           <h2 id="products-title" className="section-title">
-            שרשראות בית המקדש וירושלים
+            סדרת תכשיטי בית המקדש וירושלים
           </h2>
           <p className="section-subtitle">
-            בחרו פריט להזמנה ישירה ב-WhatsApp או במייל | תשלום ב-Bit ומשלוח מהיר
+            לכבוד שבת ומועד, כמזכרת קודש אישית או כמתנה בעלת משמעות עמוקה
           </p>
         </div>
 

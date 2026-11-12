@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, Sparkles, CheckCircle2 } from 'lucide-react';
 import { siteConfig } from '../config';
-import { BitIcon } from './Icons';
 
 export function InfoAccordion() {
   const [openSection, setOpenSection] = useState(null);
@@ -11,10 +10,10 @@ export function InfoAccordion() {
   };
 
   return (
-    <section className="info-accordion-section" aria-label="מידע והסברים על התכשיטים וההזמנה">
+    <section className="info-accordion-section" aria-label="כיסופים למקדש ופרטי הזמנה">
       <div className="section-container info-accordion-container">
         
-        {/* Accordion 1: למה תכשיטי ירושלים */}
+        {/* Accordion 1: כיסופים למקדש — ניסוח תורני-דתי-לאומי ייצוגי */}
         <div className={`accordion-card ${openSection === 'why' ? 'open' : ''}`}>
           <button
             type="button"
@@ -24,24 +23,27 @@ export function InfoAccordion() {
           >
             <div className="accordion-title-wrap">
               <Sparkles size={18} className="accordion-icon gold-icon" />
-              <span className="accordion-title">למה תכשיטי בית המקדש וירושלים?</span>
+              <span className="accordion-title">כיסופים למקדש – על החיבור לעיר הקודש</span>
             </div>
             <ChevronDown size={18} className={`chevron-indicator ${openSection === 'why' ? 'rotate' : ''}`} />
           </button>
 
           {openSection === 'why' && (
             <div className="accordion-drawer-body">
-              <p>
-                ירושלים ובית המקדש הם סמל חי של שורשים, קדושה וזיכרון נצחי. התכשיטים של <strong>משכן לב</strong> נוצרו מתוך אהבה עמוקה למסורת, בעבודת צורפות מוקפדת מכסף סטרלינג 925 וציפוי זהב 18K עמיד.
+              <p className="accordion-lead-quote">
+                "אִם אֶשְׁכָּחֵךְ יְרוּשָׁלָ‍ִם תִּשְׁכַּח יְמִינִי, תִּדְבַּק לְשׁוֹנִי לְחִכִּי אִם לֹא אֶזְכְּרֵכִי..."
               </p>
               <p>
-                ענידת התכשיט מעניקה תזכורת יומיומית של אור, חיבור ומשמעות עמוקה בכל צעד – כמתנה אישית מרגשת או מזכרת נצחית מעיר הקודש.
+                הכיסופים לעיר הקודש, למקום מקדשנו ולבניין ציון ואריאל מלווים את עם ישראל בכל תחנות הדורות – לא רק כזיכרון עבר, אלא כשאיפה חיה, פועמת ומאירה בלב כל אחד ואחת מאיתנו.
+              </p>
+              <p>
+                תכשיטי <strong>משכן לב</strong> נועדו לשאת את יופיים של שערי המקדש, חומות ירושלים ופסוקי הנצח קרוב אל הלב בחיי היומיום – כאות של קדושה, שייכות שורשית וחיבור עמוק לגאולת ירושלים.
               </p>
             </div>
           )}
         </div>
 
-        {/* Accordion 2: איך ההזמנה מתבצעת */}
+        {/* Accordion 2: כיצד מתבצעת ההזמנה */}
         <div className={`accordion-card ${openSection === 'how' ? 'open' : ''}`}>
           <button
             type="button"
@@ -51,7 +53,7 @@ export function InfoAccordion() {
           >
             <div className="accordion-title-wrap">
               <CheckCircle2 size={18} className="accordion-icon green-icon" />
-              <span className="accordion-title">איך ההזמנה מתבצעת? (ב-3 צעדים פשוטים)</span>
+              <span className="accordion-title">כיצד מתבצעת ההזמנה והמשלוח?</span>
             </div>
             <ChevronDown size={18} className={`chevron-indicator ${openSection === 'how' ? 'rotate' : ''}`} />
           </button>
@@ -62,24 +64,24 @@ export function InfoAccordion() {
                 <div className="how-step-item">
                   <div className="step-num-badge">1</div>
                   <div>
-                    <strong>בוחרים תכשיט</strong>
-                    <span>לוחצים על "הזמנה ב-WhatsApp" או במייל ישירות מתחת לפריט המבוקש.</span>
+                    <strong>בחירת התכשיט</strong>
+                    <span>בוחרים את הדגם הרצוי ולוחצים על "הזמנה ב-WhatsApp" להזמנה ישירה ומהירה.</span>
                   </div>
                 </div>
 
                 <div className="how-step-item">
                   <div className="step-num-badge">2</div>
                   <div>
-                    <strong>מעבירים תשלום ב-Bit</strong>
-                    <span>ללא צורך בכרטיסי אשראי או בהרשמה – מעבירים ב-Bit ישירות למספר <strong>{siteConfig.contact.displayPhone}</strong>.</span>
+                    <strong>תשלום קל ב-Bit</strong>
+                    <span>מעבירים תשלום ישירות באפליקציית Bit למספר <strong>{siteConfig.contact.displayPhone}</strong> – ללא צורך בכרטיס אשראי או בהרשמה.</span>
                   </div>
                 </div>
 
                 <div className="how-step-item">
                   <div className="step-num-badge">3</div>
                   <div>
-                    <strong>מקבלים במשלוח מהיר</strong>
-                    <span>התכשיט נארז באריזת בוטיק מהודרת ונשלח ישירות אליכם לכל חלקי הארץ (משלוח חינם מעל ₪{siteConfig.shipping.freeThreshold}).</span>
+                    <strong>משלוח מהיר עד הבית</strong>
+                    <span>התכשיט נארז באריזת שי מכובדת ונשלח אליכם לכל חלקי הארץ (משלוח חינם בהזמנה מעל ₪{siteConfig.shipping.freeThreshold}).</span>
                   </div>
                 </div>
               </div>

@@ -10,10 +10,10 @@ const HERO_SHOWCASE_ITEMS = [
   {
     id: 'collection',
     targetId: 'products-section',
-    label: '✨ כל הקולקציה',
+    label: 'כל הקולקציה',
     tag: 'קולקציית ירושלים והמקדש',
-    title: 'סדרת תכשיטי משכן לב השלמה',
-    price: 'החל מ-₪25 | משלוח חינם מעל ₪150',
+    title: 'סדרת תכשיטי משכן לב',
+    price: 'החל מ-₪25 | משלוח לכל הארץ',
     img: getImg('collection_all_master.jpg'),
     alt: 'קולקציית תכשיטי בית המקדש וירושלים - כל הפריטים יחד'
   },
@@ -21,19 +21,19 @@ const HERO_SHOWCASE_ITEMS = [
     id: 'heart',
     targetId: 'product-gold-heart-jerusalem',
     label: 'תליון אם אשכחך',
-    tag: 'מהדורה מיוחדת ✨',
-    title: 'תליון לב "אם אשכחך ירושלים"',
-    price: '₪50 בלבד',
+    tag: 'שער המקדש ופסוק הזיכרון',
+    title: 'תליון "אם אשכחך ירושלים"',
+    price: '₪50',
     img: getImg('gold_heart_stone.jpg'),
-    alt: 'תליון לב זהב אם אשכחך ירושלים'
+    alt: 'תליון אם אשכחך ירושלים'
   },
   {
     id: 'gates',
     targetId: 'product-gold-jerusalem-gates',
     label: 'שערי ירושלים',
-    tag: 'הנמכר ביותר 🔥',
+    tag: 'פנורמת חומות ושער המקדש',
     title: 'שרשרת "שערי ירושלים"',
-    price: '₪45 בלבד',
+    price: '₪45',
     img: getImg('gold_gates_arch.jpg'),
     alt: 'שרשרת שערי ירושלים'
   },
@@ -41,21 +41,21 @@ const HERO_SHOWCASE_ITEMS = [
     id: 'silver',
     targetId: 'product-silver-jerusalem-temple',
     label: 'עולים לירושלים',
-    tag: 'כסף סטרלינג 925 🕊️',
-    title: 'שרשרת כסף "עולים לירושלים"',
-    price: '₪35 בלבד',
+    tag: 'עולי הרגל ושער המקדש',
+    title: 'שרשרת "עולים לירושלים"',
+    price: '₪35',
     img: getImg('silver_temple_pomegranate.jpg'),
-    alt: 'שרשרת כסף עולים לירושלים'
+    alt: 'שרשרת עולים לירושלים'
   },
   {
     id: 'crown',
     targetId: 'product-gold-temple-crown',
     label: 'כתר המקדש',
-    tag: 'ציפוי זהב 18K 👑',
-    title: 'שרשרת זהב "כתר המקדש"',
-    price: '₪25 בלבד',
+    tag: 'חזית המקדש ומגדלי החומה',
+    title: 'שרשרת "כתר המקדש"',
+    price: '₪25',
     img: getImg('gold_crown_wood.jpg'),
-    alt: 'שרשרת זהב כתר המקדש'
+    alt: 'שרשרת כתר המקדש'
   }
 ];
 
@@ -102,22 +102,29 @@ export function Hero() {
     setTouchStartY(null);
   };
 
-  // לחיצה מובילה ישירות לתכשיט לפי השם או התמונה
+  // לחיצה על כפתור בחירה: מציגה את התכשיט בתמונה הראשית בלבד (ללא גלילה כפויה)
+  const handlePillClick = (idx) => {
+    setActiveItemIndex(idx);
+    setIsHeroPaused(true); // עוצר החלפה אוטומטית כדי לאפשר התרשמות רגועה מהפריט
+  };
+
+  // מעבר ישיר ומדויק לכרטיסיית הפריט — מיקום מאוזן ויפה מתחת לסרגל העליון
   const scrollToProduct = (targetId) => {
     if (!targetId) return;
     const el = document.getElementById(targetId);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const navOffset = 85;
+      const elementPosition = el.getBoundingClientRect().top;
+      const targetY = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: Math.max(0, targetY),
+        behavior: 'smooth'
+      });
       el.classList.add('highlight-target-card');
       setTimeout(() => {
         el.classList.remove('highlight-target-card');
       }, 2200);
     }
-  };
-
-  const handlePillClick = (idx, targetId) => {
-    setActiveItemIndex(idx);
-    scrollToProduct(targetId);
   };
 
   const activeItem = HERO_SHOWCASE_ITEMS[activeItemIndex];
@@ -126,24 +133,24 @@ export function Hero() {
     <section className="hero-section" aria-label="פתיח חנות משכן לב">
       <div className="hero-container hero-image-first-container">
         
-        {/* כותרת מותג תמציתית */}
+        {/* כותרת מותג תמציתית וייצוגית */}
         <div className="hero-compact-header">
           <div className="hero-badge">
             <GemIcon size={14} />
-            <span>בוטיק משכן לב</span>
+            <span>משכן לב • ירושלים עיר הקודש</span>
           </div>
 
           <h1 className="hero-title">
-            תכשיטי בית המקדש
-            <span className="hero-title-highlight">וירושלים</span>
+            לענוד את הקודש,
+            <span className="hero-title-highlight">לחבר את הלב לירושלים</span>
           </h1>
 
           <p className="hero-description">
-            שרשראות כסף סטרלינג 925 וציפוי זהב 18K מובחרים. לחצו על התמונה או על הפריט למעבר ישיר:
+            סדרת תכשיטי בית המקדש, חומות ירושלים ופסוקי הנצח. בחרו דגם לצפייה בתמונה:
           </p>
         </div>
 
-        {/* דבר ראשון: התמונות הנעות (לחיצה מובילה ישירות לתכשיט) */}
+        {/* דבר ראשון: התמונות הנעות והחלפת מבטים */}
         <div 
           className="hero-visual"
           onMouseEnter={() => setIsHeroPaused(true)}
@@ -153,12 +160,11 @@ export function Hero() {
           onTouchStart={handleHeroTouchStart}
           onTouchEnd={handleHeroTouchEnd}
         >
+          {/* 1. תצוגת התמונה הראשית של הפריט הנבחר — ראשונה במסך */}
           <div 
-            className="hero-image-frame clickable-frame"
-            onClick={() => scrollToProduct(activeItem.targetId)}
-            role="button"
-            tabIndex={0}
-            title={`לחצו לצפייה ב-${activeItem.title}`}
+            className="hero-image-frame"
+            role="region"
+            aria-label={`תמונת ${activeItem.title}`}
           >
             <img
               key={activeItem.id}
@@ -167,14 +173,10 @@ export function Hero() {
               className="hero-main-img hero-moving-img"
               loading="eager"
             />
-            <div className="image-click-hint">
-              <span>{activeItem.label} – לצפייה בפריט</span>
-              <ArrowDown size={14} />
-            </div>
           </div>
 
-          {/* לחיצה מובילה ישירות לתכשיט לפי השם */}
-          <div className="hero-switcher" role="tablist" aria-label="בחירת מבט ומעבר ישיר לתכשיט">
+          {/* 2. כפתורי בחירת התכשיט — מחזירים למתחת לתמונה בלבד */}
+          <div className="hero-switcher" role="tablist" aria-label="בחירת תכשיט לתצוגה">
             {HERO_SHOWCASE_ITEMS.map((item, idx) => (
               <button
                 key={item.id}
@@ -182,13 +184,24 @@ export function Hero() {
                 role="tab"
                 aria-selected={idx === activeItemIndex}
                 className={`hero-switcher-btn ${idx === activeItemIndex ? 'active' : ''}`}
-                onClick={() => handlePillClick(idx, item.targetId)}
-                title={`מעבר ישיר ל-${item.label}`}
+                onClick={() => handlePillClick(idx)}
+                title={`הצגת ${item.label} בתמונה הראשית`}
               >
                 {item.label}
               </button>
             ))}
           </div>
+
+          {/* 3. כפתור גישה יחיד לפריט הנבחר — מוביל למטה רק כשהלקוח מתרשם ומחליט */}
+          <button
+            type="button"
+            className="hero-access-product-btn"
+            onClick={() => scrollToProduct(activeItem.targetId)}
+            title={`למעבר לפרטי ${activeItem.title} והזמנה`}
+          >
+            <span>למעבר ל{activeItem.id === 'collection' ? 'כל הקולקציה' : `דגם ${activeItem.label}`} והזמנה</span>
+            <ArrowDown size={15} />
+          </button>
         </div>
 
       </div>
